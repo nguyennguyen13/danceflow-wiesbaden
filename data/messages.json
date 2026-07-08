@@ -1,0 +1,9 @@
+[
+  {
+    "id": "msg-0001",
+    "name": "Test",
+    "email": "test@email.com",
+    "message": "das ist ein test",
+    "createdAt": "2026-07-08"
+  }
+]
