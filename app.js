@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
 // ===== SESSION =====
 app.use(session({
@@ -33,10 +34,21 @@ app.use((req, res, next) => {
     next();
 });
 
-// ===== TEST ROUTE =====
-app.get('/', (req, res) => {
-    res.send('🕺 DanceFlow Wiesbaden läuft!');
-});
+
+
+// ===== ROUTES =====
+const pagesRouter = require('./routes/pages');
+app.use('/', pagesRouter);
+
+// Sobald Person 2, 3, 4 ihre Router fertig haben, hier ergänzen:
+// const coursesRouter = require('./routes/courses');   // Person 2 (falls eigene Datei)
+// const authRouter = require('./routes/auth');          // Person 3
+// const adminRouter = require('./routes/admin');        // Person 4
+// const apiRouter = require('./routes/api');            // Person 4
+// app.use('/', coursesRouter);
+// app.use('/', authRouter);
+// app.use('/admin', adminRouter);
+// app.use('/api', apiRouter);
 
 // ===== 404 =====
 app.use((req, res) => {

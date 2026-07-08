@@ -1,0 +1,149 @@
+/* =========================================================
+   DanceFlow Wiesbaden – style.css
+   Globale Variablen, Reset, Typografie, Layout-Skelett
+   ========================================================= */
+
+@import url('homepage.css');
+
+
+/* ===== CSS-VARIABLEN (Corporate Design) ===== */
+:root {
+  /* Basisfarben */
+  --nightsky-blue: #191970;
+  --warm-red: #d73700;
+  --sand-gold: #d2aa6d;
+
+  /* Neon-Kursfarben */
+  --volt-yellow: #ffe600;
+  --neon-cyan: #00f0ff;
+  --neon-coral: #ff1e27;
+
+  /* Abgeleitete Werte */
+  --text-light: #f5f5f5;
+  --text-dark: #191970;
+  --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+
+  --radius-md: 10px;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.site-header .nav-link {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: #ffffff;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+/* ===== TYPOGRAFIE ===== */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  color: var(--warm-red);
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.3rem; }
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background-color: var(--nightsky-blue);
+  color: rgba(245, 245, 245, 0.7); /* Leicht transparentes Weiß */
+  padding: 2rem 0;
+  margin-top: 4rem;
+  font-size: 0.85rem;
+}
+
+/* ===== BUTTONS (global) ===== */
+.btn {
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--volt-yellow);
+  color: var(--nightsky-blue);
+  border-color: var(--volt-yellow);
+}
+
+.btn-primary:hover {
+  background-color: #e6cf00;
+  border-color: #e6cf00;
+  color: var(--nightsky-blue);
+  box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
+}
+
+.btn-outline-primary {
+  color: var(--nightsky-blue);
+  border-color: var(--nightsky-blue);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--nightsky-blue);
+  color: var(--text-light);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid var(--sand-gold);
+  color: var(--sand-gold);
+}
+
+/* ===== RESPONSIVE (Mobile) ===== */
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  h1 { font-size: 1.9rem; }
+}
+
+/* ===== 11. IMPORT OTHER FILES CSS =====
+   Sobald Person 2/3/4 ihre Dateien anlegen, hier ergänzen:
+   @import url('courses.css');
+   @import url('auth.css');
+   @import url('admin.css');
+   (auskommentiert lassen, sonst 404 in der Konsole, solange die Dateien noch nicht existieren) */

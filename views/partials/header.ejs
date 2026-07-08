@@ -1,0 +1,28 @@
+<div class="site-header">
+  <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
+      
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <img src="../images/logo_danceflow_wiesbaden.png" alt="Danceflow Wiesbaden Logo" height="100">
+        </a>
+      </div>
+      
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+        <li><a href="/courses" class="nav-link px-2 text-white">Kurse</a></li>
+        <li><a href="/#kontakt" class="nav-link px-2 text-white">Kontakt</a></li>
+      </ul>
+      
+      <div class="col-md-3 text-end">
+        <% if (user) { %>
+          <a href="/admin" class="btn btn-outline-light">Dashboard</a>
+        <% } else { %>
+          <a href="/login" class="btn btn-outline-light me-2">Login</a>
+          <a href="/register" class="btn btn-primary">Registrieren</a>
+        <% } %>
+      </div>
+      
+    </header>
+  </div>
+</div>
