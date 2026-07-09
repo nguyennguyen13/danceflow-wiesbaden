@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <%- include('partials/head') %>
+
+<body class="bg-light">
+    <%- include('partials/header') %>
+<main class="container" style="margin-top: 150px; position: relative; z-index: 1050;">
+    <a href="/admin" class="btn btn-outline-secondary mb-3">&larr; Zurück zur Übersicht</a>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
+            <!-- Dynamische Überschrift -->
+            <h2 class="card-title mb-4">
+                <%= course ? 'Kurs bearbeiten (' + course.id + ')' : 'Neuen Tanzkurs anlegen' %>
+            </h2>
+            
+            <!-- Dynamische Action: Schickt entweder an die Update-Route oder an die New-Route -->
+            <form action="<%= course ? '/admin/edit-course/' + course.id : '/admin/new-course' %>" method="POST">
+                
+                <div class="mb-3">
+                    <label class="form-label">Kursname</label>
+                    <input type="text" name="name" class="form-control" value="<%= course ? course.name : '' %>" placeholder="z.B. Salsa Fortgeschritten" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Tanzstil</label>
+                    <input type="text" name="style" class="form-control" value="<%= course ? course.style : '' %>" placeholder="z.B. Salsa" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Level</label>
+                    <select name="level" class="form-select">
+                        <option value="beginner" <%= course && course.level === 'beginner' ? 'selected' : '' %>>Beginner</option>
+                        <option value="intermediate" <%= course && course.level === 'intermediate' ? 'selected' : '' || !course ? 'selected' : '' %>>Intermediate</option>
+                        <option value="advanced" <%= course && course.level === 'advanced' ? 'selected' : '' %>>Advanced</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Altersgruppe</label>
+                    <input type="text" name="ageGroup" class="form-control" value="<%= course ? course.ageGroup : 'Erwachsene' %>" placeholder="z.B. Erwachsene oder Jugendliche" required>
+                </div>
+                
+                <div class="row">
+                    <div class="col mb-3">
+                        <label class="form-label">Wochentag</label>
+                        <input type="text" name="weekday" class="form-control" value="<%= course ? course.weekday : '' %>" placeholder="z.B. Montag" required>
+                    </div>
+                    <div class="col mb-3">
+                        <label class="form-label">Uhrzeit</label>
+                        <input type="text" name="time" class="form-control" value="<%= course ? course.time : '' %>" placeholder="z.B. 18:00-19:00" required>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col mb-3">
+                        <label class="form-label">Startdatum</label>
+                        <input type="date" name="startDate" class="form-control" value="<%= course ? course.startDate : '' %>" required>
+                    </div>
+                    <div class="col mb-3">
+                        <label class="form-label">Max. Teilnehmer</label>
+                        <input type="number" name="maxParticipants" class="form-control" value="<%= course ? course.maxParticipants : '20' %>" required>
+                    </div>
+                </div>
+
+                <!-- Status-Feld wird nur angezeigt, wenn wir einen Kurs bearbeiten -->
+                <% if (course) { %>
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select name="status" class="form-select">
+                            <option value="active" <%= course.status === 'active' ? 'selected' : '' %>>Aktiv</option>
+                            <option value="inactive" <%= course.status === 'inactive' ? 'selected' : '' %>>Inaktiv</option>
+                        </select>
+                    </div>
+                <% } %>
+                
+                <!-- Dynamischer Button-Text -->
+                <button type="submit" class="btn <%= course ? 'btn-warning' : 'btn-success' %> w-100 mt-3">
+                    <%= course ? 'Änderungen speichern' : 'Kurs verbindlich speichern' %>
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+
+</body>
+
+<%- include('partials/footer') %>
+
+</html>
