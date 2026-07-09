@@ -1,0 +1,15 @@
+[
+    {
+        "id": "salsa-101",
+        "name": "Salsa Vorgeschrittene",
+        "style": "Salsa",
+        "level": "intermediate",
+        "ageGroup": "Erwachsene",
+        "weekday": "Montag",
+        "time": "18:00-19:00",
+        "startDate": "2026-07-07",
+        "maxParticipants": 20,
+        "bookedParticipants": 15,
+        "status": "active"
+    }
+]
