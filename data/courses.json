@@ -1,15 +1,41 @@
 [
     {
         "id": "salsa-101",
-        "name": "Salsa Vorgeschrittene",
+        "name": "Salsa Anfänger",
         "style": "Salsa",
-        "level": "intermediate",
+        "level": "beginner",
         "ageGroup": "Erwachsene",
-        "weekday": "Montag",
-        "time": "18:00-19:00",
-        "startDate": "2026-07-07",
-        "maxParticipants": 20,
-        "bookedParticipants": 15,
+        "weekday": "Dienstag",
+        "time": "17:00-18:00",
+        "startDate": "2026-07-21",
+        "maxParticipants": 15,
+        "bookedParticipants": 0,
+        "status": "active"
+    },
+    {
+        "id": "salsa-102",
+        "name": "Salsa Profi",
+        "style": "Salsa",
+        "level": "advanced",
+        "ageGroup": "Erwachsene",
+        "weekday": "Mittwoch",
+        "time": "20:00-22:00",
+        "startDate": "2026-07-22",
+        "maxParticipants": 10,
+        "bookedParticipants": 0,
+        "status": "active"
+    },
+    {
+        "id": "salsa-103",
+        "name": "Salsa Anfänger",
+        "style": "Salsa",
+        "level": "beginner",
+        "ageGroup": "Erwachsene",
+        "weekday": "Donnerstag",
+        "time": "18:00-20:00",
+        "startDate": "2026-07-23",
+        "maxParticipants": 30,
+        "bookedParticipants": 0,
         "status": "active"
     }
 ]
