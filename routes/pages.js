@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const { requireAdmin } = require('../middlewares/roleMiddleware');
 
 const messagesPath = path.join(__dirname, '..', 'data', 'messages.json');
 
@@ -37,6 +38,16 @@ router.post('/api/contact', (req, res) => {
   fs.writeFileSync(messagesPath, JSON.stringify(messages, null, 2));
 
   res.redirect('/#kontakt');
+});
+
+router.get('/admin', requireAdmin, (req, res) => {
+    try {
+      const fileContent = fs.readFileSync(messagesPath, 'utf-8');
+      const messages = JSON.parse(fileContent || '[]');
+      res.render('admin', { messages: messages });
+    } catch (err) {
+      res.status(500).send('Fehler beim Laden der Nachrichten.');
+    }
 });
 
 module.exports = router;
