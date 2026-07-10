@@ -4,15 +4,15 @@
     "username": "admin",
     "name": "Admin",
     "email": "admin@danceflow.de",
-    "password": "$2a$10$zKIxiprFYGk3AXT2cn6cEu48CrngY3af79rQOqBvCvvxu37aS/UbW",
+    "password": "$2a$10$MGYZ7wGymlJSXPR5GBB6BOzcBmnw0MKPFalUZvkr89P82SbH0fcRW",
     "role": "admin"
   },
   {
-    "id": "1783653693698",
+    "id": "1783663637144",
     "username": "alice",
     "name": "Alice",
     "email": "alice@mail.de",
-    "password": "$2a$10$VAMXr8IOO2MBQc3hVdwZQ.zvgBXJvQpJQ11/x3akd.mfLJSvBoUIy",
+    "password": "$2a$10$rEO2p7yRP5MRx0ffseAHAe1xJ3X0qq3SAwH9h.q6LRiWoa5qzWVgi",
     "role": "customer"
   }
 ]

@@ -133,7 +133,7 @@ router.post('/api/auth/login', async (req, res) => {
     };
 
     // Ziel-URL für die Weiterleitung nach erfolgreichem Login
-    const redirectUrl = user.role === 'admin' ? '/admin' : '/'
+    const redirectUrl = user.role === 'admin' ? '/' : '/'
     res.json({ success: true, redirect: redirectUrl });
 });
 

@@ -139,17 +139,15 @@ h3 {
   box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
 }
 
-/*
 .btn-outline-primary {
-  color: var(--nightsky-blue);
-  border-color: var(--nightsky-blue);
+  color: var(--text-light);
+  border-color: var(--text-light);
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--volt-yellow);
-  color: var(--text-light);
+  color: var(--volt-yellow);
+  border-color: var(--volt-yellow);
 }
-  */
 
 .btn-outline-light {
   font-size: 1.1rem;
@@ -185,17 +183,38 @@ h3 {
   margin: 0 10px;
 }
 
-.btn-danger {
-  background-color: var(--warm-red);
-  color: #fff;
-  border-color: var(--warm-red);
+.btn-secondary:hover {
+  background-color: color-mix(in srgb, var(--volt-yellow), transparent 20%) !important;
+  color: var(--nightsky-blue) !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  outline: none !important;
+  box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
 }
 
-.btn-danger:hover {
-  background-color: #b52d00;
-  border-color: #b52d00;
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(215, 55, 0, 0.45);
+/* --- Admin-Bereich Styling --- */
+.admin-container {   
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px; /* Oder verwende deine Variable var(--radius-md) */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table-header {
+  background-color: var(--nightsky-blue);
+  color: #ffffff;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(255, 230, 0, 0.1); /* Dezentes Volt-Yellow */
+}
+
+.admin-title {
+  color: var(--nightsky-blue);
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .site-header img[alt*="Logo"] {

@@ -4,24 +4,24 @@
 
       <div class="col-md-3 mb-2 mb-md-0">
         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-          <img src="../images/logo_danceflow_wiesbaden.png" alt="Danceflow Wiesbaden Logo" height="50">
+          <img src="../images/logo_danceflow_wiesbaden.png" alt="Danceflow Wiesbaden Logo" height="70">
         </a>
       </div>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/" class="btn-secondary">Home</a></li>
-        <li><a href="/courses" class="btn-secondary">Kurse</a></li>
-        <li><a href="/#kontakt" class="btn-secondary">Kontakt</a></li>
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 gap-3">
+        <li><a href="/" class="btn-outline-primary">Home</a></li>
+        <li><a href="/courses" class="btn-outline-primary">Kurse</a></li>
+        <li><a href="/#kontakt" class="btn-outline-primary">Kontakt</a></li>
       </ul>
 
-      <div class="col-md-3 text-end d-flex justify-content-end align-items-center gap-2">
+      <div class="col-md-3 text-end d-flex justify-content-end align-items-center gap-3">
         <% if (user) { %>
           <% if (user.role==='admin' ) { %>
-            <a href="/admin" class="nav-link px-2 text-white">Dashboard</a>
+            <a href="/admin" class="btn-outline-primary">Dashboard</a>
             <% } %>
-              <a href="#" onclick="logout()" class="nav-link px-2 text-white">Logout</a>
+              <a href="#" onclick="logout()" class="btn-outline-primary">Logout</a>
               <% } else { %>
-                <a href="/login" class="nav-link px-2 text-white">Login</a>
+                <a href="/login" class="btn-outline-primary">Login</a>
                 <% } %>
       </div>
 
