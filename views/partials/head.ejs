@@ -1,0 +1,29 @@
+<!--
+  views/partials/head.ejs – HEAD-Bereich für alle Seiten
+  Dieser Partials wird in jede Seite eingebunden (index, login, courses, admin…).
+  Er enthält:
+    - Meta-Tags (Charset, Viewport für Responsive)
+    - Google Fonts (Montserrat)
+    - Bootstrap CSS (von /bootstrap/css/bootstrap.min.css)
+    - Eigene zentrale Stylesheet (style.css)
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+  rel="stylesheet">
+
+<!-- Logo auf Tab -->
+<link rel="icon" type="image/png" href="/images/logo_danceflow_wiesbaden.png"> 
+
+<!-- Title: DanceFlow - Seite -->
+<title>DanceFlow<%= title ? ' - ' + title : '' %></title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="/css/style.css">

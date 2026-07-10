@@ -9,7 +9,7 @@ const messagesPath = path.join(__dirname, '..', 'data', 'messages.json');
 // Hinweis: "user" und "currentPath" müssen hier NICHT mehr übergeben werden –
 // Person 3 setzt beides bereits global via res.locals in app.js.
 router.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { title: 'Startseite' });
 });
 
 // ===== POST /api/contact – Kontaktformular validieren & speichern (Person 1) =====
