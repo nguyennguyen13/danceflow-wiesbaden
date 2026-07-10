@@ -45,12 +45,12 @@ app.use('/api', apiRoutes);
 // Sobald Person 2, 3, 4 ihre Router fertig haben, hier ergänzen:
 // const coursesRouter = require('./routes/courses');   // Person 2 (falls eigene Datei)
 // const authRouter = require('./routes/auth');          // Person 3
-// const adminRouter = require('./routes/admin');        // Person 4
-// const apiRouter = require('./routes/api');            // Person 4
+const adminRouter = require('./routes/admin');        // Person 4
+//const apiRouter = require('./routes/api');            // Person 4
 // app.use('/', coursesRouter);
 // app.use('/', authRouter);
-// app.use('/admin', adminRouter);
-// app.use('/api', apiRouter);
+app.use('/admin', adminRouter);
+//app.use('/api', apiRouter);
 
 // ===== 404 =====
 app.use((req, res) => {

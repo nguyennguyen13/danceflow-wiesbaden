@@ -1,0 +1,10 @@
+[
+    {
+        "id": "bk-0001",
+        "courseId": "salsa-101",
+        "customerName": "Max Mustermann",
+        "partnerName": "Erika Mustermann",
+        "status": "confirmed",
+        "createdAt": "2026-07-07"
+    }
+]
