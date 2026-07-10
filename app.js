@@ -10,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ===== MIDDLEWARE =====
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
@@ -20,7 +20,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'fallback-secret',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 Tag gültig
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }
 }));
 
 // ===== VIEW ENGINE =====
@@ -37,39 +37,33 @@ app.use((req, res, next) => {
 
 
 // ===== ROUTES =====
-
-// Startseite
 const pagesRouter = require('./routes/pages');
-const apiRoutes = require('./routes/api');
 app.use('/', pagesRouter);
-app.use('/api', apiRoutes);
 
-// Anmeldeseite
-const authRouter = require('./routes/auth');
+// Sobald Person 2, 3, 4 ihre Router fertig haben, hier ergänzen:
+// const coursesRouter = require('./routes/courses');   // Person 2 (falls eigene Datei)
+const authRouter = require('./routes/auth');          // Person 3
+const adminRouter = require('./routes/admin');        // Person 4
+//const apiRouter = require('./routes/api');            // Person 4
+// app.use('/', coursesRouter);
 app.use('/', authRouter);
-
-// Adminbereich
-//const adminRouter = require('./routes/admin');
-//app.use('/admin', adminRouter);
-
-// API-Routen
-//const apiRouter = require('./routes/api');
+app.use('/admin', adminRouter);
 //app.use('/api', apiRouter);
 
 // ===== 404 =====
 app.use((req, res) => {
-    res.status(404).send('Seite nicht gefunden');
+    res.status(404).send('❌ Seite nicht gefunden');
 });
 
 // ===== ERROR =====
 app.use((err, req, res, next) => {
-    console.error('Server Error:', err.stack);
-    res.status(500).send('Server Fehler');
+    console.error('❌ Server Error:', err.stack);
+    res.status(500).send('❌ Server Fehler');
 });
 
 // ===== SERVER START =====
 app.listen(PORT, () => {
-    console.log(`Server läuft auf http://localhost:${PORT}`);
+    console.log(`✅ Server läuft auf http://localhost:${PORT}`);
 });
 
 module.exports = app;
