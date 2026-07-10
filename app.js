@@ -10,8 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ===== MIDDLEWARE =====
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 
@@ -40,7 +40,9 @@ app.use((req, res, next) => {
 
 // Startseite
 const pagesRouter = require('./routes/pages');
+const apiRoutes = require('./routes/api');
 app.use('/', pagesRouter);
+app.use('/api', apiRoutes);
 
 // Anmeldeseite
 const authRouter = require('./routes/auth');
