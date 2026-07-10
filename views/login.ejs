@@ -14,6 +14,7 @@
 <head>
     <!--partials/head.ejs – HEAD-Bereich für alle Seiten -->
     <%- include('partials/head') %>
+    <title>DanceFlow Wiesbaden - Anmeldung</title>
 </head>
 
 <body>
@@ -142,6 +143,16 @@
                     }
                 }
 
+                /**
+                 * Versteckt alle Nachrichten auf der Seite
+                 */
+                function hideAllMessages() {
+                    document.querySelectorAll('.message').forEach(el => {
+                        el.style.display = 'none';
+                        el.textContent = '';
+                    });
+                }
+
                 // Leert alle Eingabefelder beim Laden der Seite
                 document.addEventListener('DOMContentLoaded', function () {
                     // Alle relevanten Input-Felder leeren
@@ -165,7 +176,7 @@
                     e.preventDefault();
                     loginScreen.style.display = 'none';
                     registerScreen.style.display = 'block';
-                    document.title = 'DanceFlow - Registrieren';
+                    document.title = 'DanceFlow Wiesbaden - Registrieren';
                     hideAllMessages();
                 });
 
@@ -174,6 +185,7 @@
                     e.preventDefault();
                     registerScreen.style.display = 'none';
                     loginScreen.style.display = 'block';
+                    document.title = 'DanceFlow Wiesbaden - Anmeldung';
                     hideAllMessages();
                 });
 

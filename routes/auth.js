@@ -96,7 +96,7 @@ router.get('/login', (req, res) => {
         }
         return res.redirect('/');
     }
-    res.render('login', { title: 'Anmelden' });
+    res.render('login', { title: 'DanceFlow - Anmeldung' });
 });
 
 /**

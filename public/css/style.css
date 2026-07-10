@@ -220,7 +220,3 @@ h3 {
 .site-header img[alt*="Logo"] {
   filter: drop-shadow(0 0 6px rgba(255, 230, 0, 0.7));
 }
-
-.site-footer {
-  margin-top: 0 !important;
-}
