@@ -21,10 +21,11 @@
   /* Abgeleitete Werte */
   --text-light: #f5f5f5;
   --text-dark: #191970;
-  --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+  --font-family: 'Montserrat', sans-serif;
+  --font-text: 'Poppins', 'Segoe UI', sans-serif;
   --font-body: 'Inter', 'Segoe UI', sans-serif;
 
-  --radius-md: 10px;
+  --radius-md: 50px;
 }
 
 /* ===== HEADER ===== */
@@ -67,15 +68,10 @@ img {
   display: block;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-}
-
 /* ===== TYPOGRAFIE ===== */
 h1, h2, h3 {
-  font-family: var(--font-heading);
+  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-family);
   color: var(--warm-red);
   line-height: 1.2;
 }
@@ -89,15 +85,22 @@ h3 { font-size: 1.3rem; }
   background-color: var(--nightsky-blue);
   color: rgba(245, 245, 245, 0.7); /* Leicht transparentes Weiß */
   padding: 2rem 0;
-  margin-top: 4rem;
+  padding-top: 100px;
   font-size: 0.85rem;
 }
 
-/* ===== BUTTONS (global) ===== */
+/* Globale Basis für alle Buttons */
 .btn {
   font-weight: 700;
   border-radius: var(--radius-md);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .btn:hover {
@@ -105,33 +108,78 @@ h3 { font-size: 1.3rem; }
 }
 
 .btn-primary {
+  font-size: 1.1rem;
   background-color: var(--volt-yellow);
   color: var(--nightsky-blue);
-  border-color: var(--volt-yellow);
+  border: 2px solid var(--volt-yellow);
+  margin: 0 10px;
+
 }
 
 .btn-primary:hover {
-  background-color: #e6cf00;
-  border-color: #e6cf00;
-  color: var(--nightsky-blue);
+  background-color: color-mix(in srgb, var(--volt-yellow), transparent 20%) !important;
+  color: var(--nightsky-blue) !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  outline: none !important;
   box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
 }
 
+/*
 .btn-outline-primary {
   color: var(--nightsky-blue);
   border-color: var(--nightsky-blue);
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--nightsky-blue);
+  background-color: var(--volt-yellow);
   color: var(--text-light);
 }
+  */
+
+.btn-outline-light {
+  font-size: 1.1rem;
+  background-color: transparent;
+  color: var(--nightsky-blue);
+  border: 2px solid var(--nightsky-blue);
+  margin: 0 10px;
+}
+
+.btn-outline-light:hover {
+  background-color: color-mix(in srgb, var(--volt-yellow), transparent 20%) !important;
+  color: var(--nightsky-blue) !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  outline: none !important;
+  box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
+}
+
 
 .btn-secondary {
-  background-color: transparent;
-  border: 2px solid var(--sand-gold);
-  color: var(--sand-gold);
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-dark);
+  margin: 0 10px;
 }
+
+.btn-secondary:hover {
+  background-color: color-mix(in srgb, var(--volt-yellow), transparent 20%) !important;
+  color: var(--nightsky-blue) !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  outline: none !important;
+  box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
+}
+
 
 /* ===== RESPONSIVE (Mobile) ===== */
 @media (max-width: 768px) {
@@ -141,9 +189,34 @@ h3 { font-size: 1.3rem; }
   h1 { font-size: 1.9rem; }
 }
 
+/* --- Admin-Bereich Styling --- */
+
+.admin-container {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px; /* Oder verwende deine Variable var(--radius-md) */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.admin-table-header {
+  background-color: var(--nightsky-blue);
+  color: #ffffff;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(255, 230, 0, 0.1); /* Dezentes Volt-Yellow */
+}
+
+.admin-title {
+  color: var(--nightsky-blue);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
 /* ===== 11. IMPORT OTHER FILES CSS =====
    Sobald Person 2/3/4 ihre Dateien anlegen, hier ergänzen:
    @import url('courses.css');
    @import url('auth.css');
-   @import url('admin.css');
    (auskommentiert lassen, sonst 404 in der Konsole, solange die Dateien noch nicht existieren) */

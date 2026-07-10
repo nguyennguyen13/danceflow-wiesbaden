@@ -9,16 +9,16 @@
       </div>
       
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
-        <li><a href="/courses" class="nav-link px-2 text-white">Kurse</a></li>
-        <li><a href="/#kontakt" class="nav-link px-2 text-white">Kontakt</a></li>
+        <li><a href="/" class="btn-secondary">Home</a></li>
+        <li><a href="/courses" class="btn-secondary">Kurse</a></li>
+        <li><a href="/#kontakt" class="btn-secondary">Kontakt</a></li>
       </ul>
       
       <div class="col-md-3 text-end">
         <% if (user) { %>
           <a href="/admin" class="btn btn-outline-light">Dashboard</a>
         <% } else { %>
-          <a href="/login" class="btn btn-outline-light me-2">Login</a>
+          <a href="/login" class="btn btn-outline-light">Login</a>
           <a href="/register" class="btn btn-primary">Registrieren</a>
         <% } %>
       </div>
