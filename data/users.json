@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "username": "admin",
+    "name": "Admin",
+    "email": "admin@danceflow.de",
+    "password": "$2a$10$MGYZ7wGymlJSXPR5GBB6BOzcBmnw0MKPFalUZvkr89P82SbH0fcRW",
+    "role": "admin"
+  },
+  {
+    "id": "1783663637144",
+    "username": "alice",
+    "name": "Alice",
+    "email": "alice@mail.de",
+    "password": "$2a$10$rEO2p7yRP5MRx0ffseAHAe1xJ3X0qq3SAwH9h.q6LRiWoa5qzWVgi",
+    "role": "customer"
+  }
+]

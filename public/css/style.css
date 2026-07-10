@@ -3,7 +3,11 @@
    Globale Variablen, Reset, Typografie, Layout-Skelett
    ========================================================= */
 
+/* ===== IMPORT OTHER FILES CSS =====*/
 @import url('homepage.css');
+@import url('courses.css');
+@import url('auth.css');
+@import url('admin.css');
 
 
 /* ===== CSS-VARIABLEN (Corporate Design) ===== */
@@ -40,7 +44,7 @@
 }
 
 .site-header .nav-link {
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 html {
@@ -69,21 +73,31 @@ img {
 }
 
 /* ===== TYPOGRAFIE ===== */
-h1, h2, h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-family: var(--font-family);
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
   color: var(--warm-red);
   line-height: 1.2;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 1.8rem; }
-h3 { font-size: 1.3rem; }
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
 
 /* ===== FOOTER ===== */
 .site-footer {
   background-color: var(--nightsky-blue);
-  color: rgba(245, 245, 245, 0.7); /* Leicht transparentes Weiß */
+  color: rgba(245, 245, 245, 0.7);
+  /* Leicht transparentes Weiß */
   padding: 2rem 0;
   padding-top: 100px;
   font-size: 0.85rem;
@@ -125,17 +139,15 @@ h3 { font-size: 1.3rem; }
   box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
 }
 
-/*
 .btn-outline-primary {
-  color: var(--nightsky-blue);
-  border-color: var(--nightsky-blue);
+  color: var(--text-light);
+  border-color: var(--text-light);
 }
 
 .btn-outline-primary:hover {
-  background-color: var(--volt-yellow);
-  color: var(--text-light);
+  color: var(--volt-yellow);
+  border-color: var(--volt-yellow);
 }
-  */
 
 .btn-outline-light {
   font-size: 1.1rem;
@@ -180,18 +192,8 @@ h3 { font-size: 1.3rem; }
   box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
 }
 
-
-/* ===== RESPONSIVE (Mobile) ===== */
-@media (max-width: 768px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-  h1 { font-size: 1.9rem; }
-}
-
 /* --- Admin-Bereich Styling --- */
-
-.admin-container {
+.admin-container {   
   max-width: 1000px;
   margin: 3rem auto;
   padding: 2rem;
@@ -215,8 +217,6 @@ h3 { font-size: 1.3rem; }
   text-align: center;
 }
 
-/* ===== 11. IMPORT OTHER FILES CSS =====
-   Sobald Person 2/3/4 ihre Dateien anlegen, hier ergänzen:
-   @import url('courses.css');
-   @import url('auth.css');
-   (auskommentiert lassen, sonst 404 in der Konsole, solange die Dateien noch nicht existieren) */
+.site-header img[alt*="Logo"] {
+  filter: drop-shadow(0 0 6px rgba(255, 230, 0, 0.7));
+}

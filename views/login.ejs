@@ -1,0 +1,346 @@
+<!--
+  views/login.ejs - Login- und Registrierungsseite
+  + Login mit Email oder Username
+  + Registrierung mit Username + Email (validiert)
+  + Passwort mind. 6 Zeichen
+  + Checkbox "Passwort anzeigen"
+  + Input immer leer beim Laden der Seite
+  + Verwendet head.ejs, header.ejs und footer.ejs aus partials/
+-->
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!--partials/head.ejs – HEAD-Bereich für alle Seiten -->
+    <%- include('partials/head') %>
+    <title>DanceFlow Wiesbaden - Anmeldung</title>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+
+        <main class="auth-container">
+            <div class="auth-box">
+                <!-- Anmeldung-->
+                <div id="loginScreen" class="auth-screen">
+                    <h2>Anmelden</h2>
+
+                    <!-- Login-Formular mit deaktiviertem Autofill -->
+                    <form id="loginForm" novalidate autocomplete="off">
+
+                        <!-- Versteckte Fake-Inputs, um Browser-Autofill zu umgehen -->
+                        <div style="display: none;">
+                            <input type="text" name="fakeusername" placeholder="Fake">
+                            <input type="password" name="fakepassword" placeholder="Fake">
+                        </div>
+
+                        <!-- E-Mail / Benutzername -->
+                        <div class="form-group">
+                            <label for="loginInput">E-Mail oder Username</label>
+                            <input type="text" id="loginInput" required autocomplete="off">
+                        </div>
+
+                        <!-- Passwort mit Checkbox -->
+                        <div class="form-group">
+                            <label for="loginPassword">Passwort</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="loginPassword" placeholder="" required autocomplete="off">
+                            </div>
+                            <div class="show-password-container">
+                                <input type="checkbox" id="loginShowPassword"
+                                    onclick="togglePasswordVisibility('loginPassword', this)">
+                                <label for="loginShowPassword">Passwort anzeigen</label>
+                            </div>
+                        </div>
+
+                        <!-- Login-Button -->
+                        <button type="submit" class="btn btn-primary">Einloggen</button>
+                    </form>
+
+                    <!-- Nachrichtenbereich für Login-Fehler/Erfolg -->
+                    <div id="loginMessage" class="message"></div>
+
+                    <!-- Link zum Registrieren -->
+                    <p class="switch-link">
+                        Noch kein Konto?
+                        <a href="#" id="showRegisterLink">Hier registrieren</a>
+                    </p>
+                </div>
+
+                <!-- Registrierung-->
+                <div id="registerScreen" class="auth-screen" style="display: none;">
+                    <h2>Registrieren</h2>
+
+                    <!-- Registrierungs-Formular mit deaktiviertem Autofill -->
+                    <form id="registerForm" novalidate autocomplete="off">
+
+                        <!-- Benutzername -->
+                        <div class="form-group">
+                            <label for="regUsername">Username</label>
+                            <input type="text" id="regUsername" required autocomplete="off">
+                        </div>
+
+                        <!-- Vollständiger Name -->
+                        <div class="form-group">
+                            <label for="regName">Vollständiger Name</label>
+                            <input type="text" id="regName" required autocomplete="off">
+                        </div>
+
+                        <!-- E-Mail -->
+                        <div class="form-group">
+                            <label for="regEmail">E-Mail-Adresse</label>
+                            <input type="email" id="regEmail" placeholder="z.B. alice@mail.de" required
+                                autocomplete="off">
+                        </div>
+
+                        <!-- Passwort mit Checkbox-->
+                        <div class="form-group">
+                            <label for="regPassword">Passwort</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="regPassword" placeholder="mind. 6 Zeichen" required
+                                    autocomplete="off">
+                            </div>
+                            <div class="show-password-container">
+                                <input type="checkbox" id="regShowPassword"
+                                    onclick="togglePasswordVisibility('regPassword', this)">
+                                <label for="regShowPassword">Passwort anzeigen</label>
+                            </div>
+                        </div>
+
+                        <!-- Registrieren-Button -->
+                        <button type="submit" class="btn btn-primary">Konto erstellen</button>
+                    </form>
+
+                    <!-- Nachrichtenbereich für Registrierungs-Fehler/Erfolg -->
+                    <div id="registerMessage" class="message"></div>
+
+                    <!-- Link zurück zum Login -->
+                    <p class="switch-link">
+                        Bereits registriert?
+                        <a href="#" id="showLoginLink">Zum Login</a>
+                    </p>
+                </div>
+
+            </div>
+        </main>
+
+        <%- include('partials/footer') %>
+
+            <!-- JS für Anmeldung und Registrierung -->
+            <script>
+
+                function togglePasswordVisibility(inputId, checkbox) {
+                    const input = document.getElementById(inputId);
+                    if (!input) return;
+
+                    if (checkbox.checked) {
+                        // Passwort anzeigen
+                        input.type = 'text';
+                    } else {
+                        // Passwort ausblenden
+                        input.type = 'password';
+                    }
+                }
+
+                /**
+                 * Versteckt alle Nachrichten auf der Seite
+                 */
+                function hideAllMessages() {
+                    document.querySelectorAll('.message').forEach(el => {
+                        el.style.display = 'none';
+                        el.textContent = '';
+                    });
+                }
+
+                // Leert alle Eingabefelder beim Laden der Seite
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Alle relevanten Input-Felder leeren
+                    const inputs = [
+                        'loginInput', 'loginPassword',
+                        'regUsername', 'regName', 'regEmail', 'regPassword'
+                    ];
+                    inputs.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) el.value = '';
+                    });
+                });
+
+                const loginScreen = document.getElementById('loginScreen');
+                const registerScreen = document.getElementById('registerScreen');
+                const showRegisterLink = document.getElementById('showRegisterLink');
+                const showLoginLink = document.getElementById('showLoginLink');
+
+                // Wechselt zum Registrierungs-Bildschirm
+                showRegisterLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    loginScreen.style.display = 'none';
+                    registerScreen.style.display = 'block';
+                    document.title = 'DanceFlow Wiesbaden - Registrieren';
+                    hideAllMessages();
+                });
+
+                // Wechselt zum Login-Bildschirm
+                showLoginLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    registerScreen.style.display = 'none';
+                    loginScreen.style.display = 'block';
+                    document.title = 'DanceFlow Wiesbaden - Anmeldung';
+                    hideAllMessages();
+                });
+
+                /**
+                 * Zeigt eine Nachricht im angegebenen Element an
+                 */
+                function showMessage(elementId, text, type = 'error') {
+                    const el = document.getElementById(elementId);
+                    if (!el) return;
+                    el.textContent = text;
+                    el.className = 'message ' + type;
+                    el.style.display = 'block';
+                }
+
+                // Validierung Login
+
+                const loginForm = document.getElementById('loginForm');
+                const loginMsg = document.getElementById('loginMessage');
+
+                loginForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const login = document.getElementById('loginInput').value.trim();
+                    const password = document.getElementById('loginPassword').value.trim();
+
+                    // Validierung: Login-Feld ausgefüllt?
+                    if (!login) {
+                        showMessage('loginMessage', 'Bitte Email oder Username eingeben', 'error');
+                        return;
+                    }
+                    // Validierung: Passwort-Feld ausgefüllt?
+                    if (!password) {
+                        showMessage('loginMessage', 'Bitte Passwort eingeben', 'error');
+                        return;
+                    }
+
+                    try {
+                        // Sende Login-Anfrage an den Server
+                        const response = await fetch('/api/auth/login', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ login, password })
+                        });
+
+                        const data = await response.json();
+
+                        if (data.success) {
+                            // Login erfolgreich
+                            showMessage('loginMessage', 'Login erfolgreich!', 'success');
+                            setTimeout(() => {
+                                window.location.href = data.redirect;
+                            }, 1000);
+                        } else {
+                            // Login fehlgeschlagen
+                            showMessage('loginMessage', (data.error || 'Login fehlgeschlagen'), 'error');
+                        }
+                    } catch (err) {
+                        // Netzwerkfehler
+                        showMessage('loginMessage', 'Netzwerkfehler – bitte versuchen Sie es später', 'error');
+                    }
+                });
+
+                // Validierung Registrierung
+
+                const registerForm = document.getElementById('registerForm');
+                const registerMsg = document.getElementById('registerMessage');
+
+                registerForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const username = document.getElementById('regUsername').value.trim();
+                    const name = document.getElementById('regName').value.trim();
+                    const email = document.getElementById('regEmail').value.trim();
+                    const password = document.getElementById('regPassword').value.trim();
+
+                    // --- Validierung: Benutzername ---
+                    if (!username) {
+                        showMessage('registerMessage', 'Bitte Username eingeben', 'error');
+                        return;
+                    }
+                    // Prüfe Benutzername-Format (3-20 Zeichen, nur Buchstaben/Zahlen/_)
+                    if (!/^[A-Za-z0-9_]{3,20}$/.test(username)) {
+                        showMessage('registerMessage', 'Username: 3-20 Zeichen, nur Buchstaben, Zahlen, _', 'error');
+                        return;
+                    }
+
+                    // --- Validierung: Name ---
+                    if (!name) {
+                        showMessage('registerMessage', 'Bitte Name eingeben', 'error');
+                        return;
+                    }
+
+                    // --- Validierung: E-Mail ---
+                    if (!email) {
+                        showMessage('registerMessage', 'Bitte E-Mail eingeben', 'error');
+                        return;
+                    }
+                    // Prüfe E-Mail-Format mit Regex
+                    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+                    if (!emailRegex.test(email)) {
+                        showMessage('registerMessage', 'Bitte eine gültige E-Mail eingeben (z.B. alice@mail.de)', 'error');
+                        return;
+                    }
+
+                    // --- Validierung: Passwort (mindestens 6 Zeichen) ---
+                    if (!password) {
+                        showMessage('registerMessage', 'Bitte Passwort eingeben', 'error');
+                        return;
+                    }
+                    if (password.length < 6) {
+                        showMessage('registerMessage', 'Passwort muss mindestens 6 Zeichen lang sein', 'error');
+                        return;
+                    }
+
+                    try {
+                        // Sende Registrierungs-Anfrage an den Server
+                        const response = await fetch('/api/auth/register', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ username, name, email, password })
+                        });
+
+                        const data = await response.json();
+
+                        if (data.success) {
+                            // Registrierung erfolgreich
+                            showMessage('registerMessage', '✅ ' + (data.message || 'Registrierung erfolgreich!'), 'success');
+                            registerForm.reset();
+
+                            // Automatische Weiterleitung zur Startseite nach 1.5 Sekunden
+                            setTimeout(() => {
+                                window.location.href = data.redirect || '/';
+                            }, 1500);
+                        } else {
+                            // Registrierung fehlgeschlagen
+                            showMessage('registerMessage', (data.error || 'Registrierung fehlgeschlagen'), 'error');
+                        }
+                    } catch (err) {
+                        // Netzwerkfehler
+                        showMessage('registerMessage', 'Netzwerkfehler – bitte versuchen Sie es später', 'error');
+                    }
+                });
+
+                // Beim Drücken von Enter in einem Input-Feld wird das Formular abgesendet
+                document.querySelectorAll('#loginForm input, #registerForm input').forEach(input => {
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const form = input.closest('form');
+                            if (form) form.dispatchEvent(new Event('submit'));
+                        }
+                    });
+                });
+            </script>
+
+</body>
+
+</html>

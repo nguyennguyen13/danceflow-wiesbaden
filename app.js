@@ -20,7 +20,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'fallback-secret',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 24 * 60 * 60 * 1000 }
+    cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 Tag gültig
 }));
 
 // ===== VIEW ENGINE =====
@@ -37,35 +37,39 @@ app.use((req, res, next) => {
 
 
 // ===== ROUTES =====
+
+// Startseite
 const pagesRouter = require('./routes/pages');
 const apiRoutes = require('./routes/api');
 app.use('/', pagesRouter);
 app.use('/api', apiRoutes);
 
-// Sobald Person 2, 3, 4 ihre Router fertig haben, hier ergänzen:
-// const coursesRouter = require('./routes/courses');   // Person 2 (falls eigene Datei)
-// const authRouter = require('./routes/auth');          // Person 3
-const adminRouter = require('./routes/admin');        // Person 4
-//const apiRouter = require('./routes/api');            // Person 4
-// app.use('/', coursesRouter);
-// app.use('/', authRouter);
-app.use('/admin', adminRouter);
+// Anmeldeseite
+const authRouter = require('./routes/auth');
+app.use('/', authRouter);
+
+// Adminbereich
+//const adminRouter = require('./routes/admin');
+//app.use('/admin', adminRouter);
+
+// API-Routen
+//const apiRouter = require('./routes/api');
 //app.use('/api', apiRouter);
 
 // ===== 404 =====
 app.use((req, res) => {
-    res.status(404).send('❌ Seite nicht gefunden');
+    res.status(404).send('Seite nicht gefunden');
 });
 
 // ===== ERROR =====
 app.use((err, req, res, next) => {
-    console.error('❌ Server Error:', err.stack);
-    res.status(500).send('❌ Server Fehler');
+    console.error('Server Error:', err.stack);
+    res.status(500).send('Server Fehler');
 });
 
 // ===== SERVER START =====
 app.listen(PORT, () => {
-    console.log(`✅ Server läuft auf http://localhost:${PORT}`);
+    console.log(`Server läuft auf http://localhost:${PORT}`);
 });
 
 module.exports = app;
