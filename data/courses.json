@@ -8,8 +8,8 @@
         "weekday": "Dienstag",
         "time": "17:00-18:00",
         "startDate": "2026-07-21",
-        "maxParticipants": 15,
-        "bookedParticipants": 0,
+        "maxParticipants": 16,
+        "bookedParticipants": 2,
         "status": "active"
     },
     {
@@ -33,9 +33,9 @@
         "ageGroup": "Erwachsene",
         "weekday": "Donnerstag",
         "time": "18:00-20:00",
-        "startDate": "2026-07-23",
+        "startDate": "2026-07-08",
         "maxParticipants": 30,
         "bookedParticipants": 0,
-        "status": "active"
+        "status": "inactive"
     }
 ]
