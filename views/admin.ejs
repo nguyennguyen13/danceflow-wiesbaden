@@ -2,20 +2,64 @@
 <html lang="de"> 
     <%- include('partials/head') %>
 <body class="bg-light">    
-    <!-- Header/Navbar wieder aktivieren -->
+    <!-- Header/Navbar aktivieren -->
     <%- include('partials/header') %>
 
-    <!-- mt-5 und pt-5 sorgt für genug Abstand unter dem Header -->
+    <!-- Genug Abstand unter dem absolut positionierten Header -->
     <main class="container" style="margin-top: 150px; position: relative; z-index: 1050;">
+        
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1>Kurs-Verwaltung (Admin)</h1>
-            <!-- Dieser Button führt zum Formular -->
+            <!-- Dieser Button führt zum flexiblen Formular -->
             <a href="/admin/new-course" class="btn btn-primary d-flex align-items-center">
                 <span class="fs-4 me-2">+</span> Neuen Kurs anlegen
             </a>
         </div>
 
-        <!-- Tabelle der Kurse -->
+        <!-- ========================================== -->
+        <!-- DYNAMISCHE FILTER-LEISTE (NEU HINZUGEFÜGT) -->
+        <!-- ========================================== -->
+        <div class="card p-3 mb-4 bg-white shadow-sm border rounded">
+            <form action="/admin" method="GET" class="row g-3 align-items-end">
+                <div class="col-12"><h5 class="mb-0 text-secondary">Kurse filtern</h5></div>
+                
+                <!-- Dynamischer Stil-Filter -->
+                <div class="col-md-4">
+                    <label class="form-label text-muted small mb-1">Tanzstil</label>
+                    <select name="style" class="form-select">
+                        <option value="">-- Alle Stile --</option>
+                        <% if (typeof allStyles !== 'undefined') { %>
+                            <% allStyles.forEach(st => { %>
+                                <option value="<%= st %>" <%= currentFilters.style === st ? 'selected' : '' %>><%= st %></option>
+                            <% }); %>
+                        <% } %>
+                    </select>
+                </div>
+
+                <!-- Dynamischer Level-Filter -->
+                <div class="col-md-4">
+                    <label class="form-label text-muted small mb-1">Kurs-Level</label>
+                    <select name="level" class="form-select text-capitalize">
+                        <option value="">-- Alle Levels --</option>
+                        <% if (typeof allLevels !== 'undefined') { %>
+                            <% allLevels.forEach(lvl => { %>
+                                <option value="<%= lvl %>" <%= currentFilters.level === lvl ? 'selected' : '' %>><%= lvl %></option>
+                            <% }); %>
+                        <% } %>
+                    </select>
+                </div>
+
+                <!-- Filter-Buttons -->
+                <div class="col-md-4 d-flex gap-2">
+                    <button type="submit" class="btn btn-secondary w-100">Filtern</button>
+                    <a href="/admin" class="btn btn-outline-secondary w-100">Zurücksetzen</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TABELLE DER KURSE                          -->
+        <!-- ========================================== -->
         <% if (courses && courses.length > 0) { %>
             <div class="table-responsive bg-white shadow-sm rounded border">
                 <table class="table table-hover table-striped align-middle mb-0">
@@ -26,9 +70,8 @@
                             <th>Stil</th>
                             <th>Level</th>
                             <th>Tag & Uhrzeit</th>
-                            <th>Teilnehmer</th>
+                            <th>Teilnehmer (inkl. Partner)</th>
                             <th>Status</th>
-                            <!-- Spaltenkopf für die Aktion -->
                             <th>Aktion</th>
                         </tr>
                     </thead>
@@ -38,15 +81,22 @@
                                 <td><code class="text-secondary"><%= course.startDate %></code></td>
                                 <td><strong><%= course.name %></strong></td>
                                 <td><span class="badge bg-secondary"><%= course.style %></span></td>
-                                <td><span class="text-capitalize"><%= course.level %></span></td>
+                                <td><span class="text-capitalize badge bg-light text-dark border"><%= course.level %></span></td>
                                 <td><%= course.weekday %>, <%= course.time %></td>
+                                
+                                <!-- Teilnehmer-Zählung mit dynamischem Fortschrittsbalken -->
                                 <td>
                                     <%= course.bookedParticipants %> / <%= course.maxParticipants %>
-                                    <div class="progress mt-1" style="height: 5px;">
-                                        <% let percent = (course.bookedParticipants / course.maxParticipants) * 100; %>
+                                    <div class="progress mt-1" style="height: 6px;">
+                                        <% 
+                                            // Berechnet Prozentwert, deckelt ihn bei maximal 100% falls überbucht
+                                            let percent = (course.bookedParticipants / course.maxParticipants) * 100; 
+                                            if (percent > 100) percent = 100;
+                                        %>
                                         <div class="progress-bar bg-success" ></div>
                                     </div>
                                 </td>
+                                
                                 <td>
                                     <% if (course.status === 'active') { %>
                                         <span class="badge bg-success">Aktiv</span>
@@ -54,10 +104,10 @@
                                         <span class="badge bg-danger">Inaktiv</span>
                                     <% } %>
                                 </td>
-                                <!-- Nur noch der Bearbeiten-Button -->
+                                
+                                <!-- Nur noch der Bearbeiten-Button (Löschen entfernt, da Wiederverwendung) -->
                                 <td>
-                                    <!-- Ruft das Formular im Bearbeitungsmodus auf -->
-                                    <a href="/admin/edit-course/<%= course.id %>" class="btn btn-sm btn-warning">
+                                    <a href="/admin/edit-course/<%= course.id %>" class="btn btn-sm btn-warning shadow-sm">
                                         Bearbeiten
                                     </a>
                                 </td>
@@ -68,66 +118,68 @@
             </div>
         <% } else { %>
             <div class="alert alert-info shadow-sm">
-                Keine Kurse gefunden. Klicken Sie oben auf den Button, um den ersten Kurs anzulegen!
+                Keine Kurse gefunden, die den Filtern entsprechen.
             </div>
         <% } %>
-        <!-- Abschnitt für Kunden-Buchungen -->
-<div class="mt-5 mb-5" style="position: relative; z-index: 1050;">
-    <h2 class="mb-4">Eingegangene Kurs-Buchungen</h2>
-    
-    <% if (bookings && bookings.length > 0) { %>
-        <div class="table-responsive bg-white shadow-sm rounded border">
-            <table class="table table-hover table-striped align-middle mb-0">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Buchungs-ID</th>
-                        <th>Kunde</th>
-                        <th>Tanzpartner</th>
-                        <th>Gebuchter Kurs</th>
-                        <th>Status</th>
-                        <th>Eingegangen am</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% bookings.forEach(booking => { %>
-                        <!-- Kursnamen live über die courseId aus dem courses-Array ermitteln -->
-                        <% 
-                            let matchingCourse = courses.find(c => c.id === booking.courseId);
-                            let courseDisplayName = matchingCourse ? matchingCourse.name : 'Unbekannter Kurs (' + booking.courseId + ')';
-                        %>
-                        <tr>
-                            <td><code class="text-secondary"><%= booking.id %></code></td>
-                            <td><strong><%= booking.customerName %></strong></td>
-                            <td>
-                                <% if (booking.partnerName && booking.partnerName.trim() !== '') { %>
-                                    <%= booking.partnerName %>
-                                <% } else { %>
-                                    <span class="text-muted"><em>Einzelanmeldung</em></span>
-                                <% } %>
-                            </td>
-                            <td>
-                                <span class="badge bg-info text-dark"><%= courseDisplayName %></span>
-                            </td>
-                            <td>
-                                <% if (booking.status === 'confirmed') { %>
-                                    <span class="badge bg-success">Bestätigt</span>
-                                <% } else { %>
-                                    <span class="badge bg-warning text-dark"><%= booking.status %></span>
-                                <% } %>
-                            </td>
-                            <td><%= booking.createdAt %></td>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        </div>
-    <% } else { %>
-        <div class="alert alert-info shadow-sm">
-            Bisher liegen noch keine Kurs-Buchungen vor.
-        </div>
-    <% } %>
-</div>
 
+        <!-- ========================================== -->
+        <!-- TABELLE DER EINGEGANGENEN KUNDENBUCHUNGEN  -->
+        <!-- ========================================== -->
+        <div class="mt-5 mb-5">
+            <h2 class="mb-4">Eingegangene Kurs-Buchungen</h2>
+            
+            <% if (typeof bookings !== 'undefined' && bookings.length > 0) { %>
+                <div class="table-responsive bg-white shadow-sm rounded border">
+                    <table class="table table-hover table-striped align-middle mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Buchungs-ID</th>
+                                <th>Kunde</th>
+                                <th>Tanzpartner</th>
+                                <th>Gebuchter Kurs</th>
+                                <th>Status</th>
+                                <th>Eingegangen am</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% bookings.forEach(booking => { %>
+                                <% 
+                                    let matchingCourse = courses.find(c => c.id === booking.courseId);
+                                    let courseDisplayName = matchingCourse ? matchingCourse.name : 'Unbekannter Kurs (' + booking.courseId + ')';
+                                %>
+                                <tr>
+                                    <td><code class="text-secondary"><%= booking.id %></code></td>
+                                    <td><strong><%= booking.customerName %></strong></td>
+                                    <td>
+                                        <% if (booking.partnerName && booking.partnerName.trim() !== '') { %>
+                                            <span class="text-dark"><%= booking.partnerName %></span>
+                                        <% } else { %>
+                                            <span class="text-muted text-sm"><em>Einzelanmeldung</em></span>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-info text-dark"><%= courseDisplayName %></span>
+                                    </td>
+                                    <td>
+                                        <% if (booking.status === 'confirmed') { %>
+                                            <span class="badge bg-success">Bestätigt</span>
+                                        <% } else { %>
+                                            <span class="badge bg-warning text-dark"><%= booking.status %></span>
+                                        <% } %>
+                                    </td>
+                                    <td><%= booking.createdAt %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } else { %>
+                <div class="alert alert-info shadow-sm">
+                    Bisher liegen noch keine Kurs-Buchungen vor.
+                </div>
+            <% } %>
+        </div>
+        
     </main>
 
     <%- include('partials/footer') %>
