@@ -12,31 +12,34 @@ router.get('/', (req, res) => {
   res.render('index');
 });
 
-// ===== POST /api/contact – Kontaktformular validieren & speichern (Person 1) =====
-// Hinweis: In der Endpunkt-Übersicht (Doku Abschnitt 7) steht dieser Endpunkt
-// eigentlich unter api.js (Person 4). Sprecht euch im Team ab, wo er final
-// landen soll – Logik ist unabhängig vom Dateiort identisch.
-router.post('/api/contact', (req, res) => {
-  const { name, email, message } = req.body;
+const auth = require('basic-auth');
+const checkAuth = (req, res, next) => {
+  const credentials = auth(req);
 
-  if (!name || !email || !message) {
-    return res.status(400).send('Bitte alle Felder ausfüllen.');
+  // Setze hier deinen Benutzernamen und Passwort fest
+  // Nutzername = admin; Passwort = geheim123;
+  if (credentials && credentials.name === 'admin' && credentials.pass === 'geheim123') {
+    return next(); // Passwort korrekt, weiter zur Seite
   }
 
-  const messages = JSON.parse(fs.readFileSync(messagesPath, 'utf-8'));
+  // Wenn falsch, fordere zur Authentifizierung auf
+  res.set('WWW-Authenticate', 'Basic realm="Admin-Bereich"');
+  res.status(401).send('Zugriff verweigert – Bitte einloggen.');
+};
 
-  const newMessage = {
-    id: 'msg-' + String(messages.length + 1).padStart(4, '0'),
-    name,
-    email,
-    message,
-    createdAt: new Date().toISOString().split('T')[0]
-  };
+/* http://localhost:3000/admin */
+router.get('/admin', checkAuth, (req, res) => {
+    try {
+      // Datei lesen
+      const fileContent = fs.readFileSync(messagesPath, 'utf-8');
+      const messages = JSON.parse(fileContent || '[]');
+      
+      // Daten an die admin.ejs Seite schicken
+      res.render('admin', { messages: messages });
+    } catch (err) {
+      res.status(500).send('Fehler beim Laden der Nachrichten.');
+    }
+  });
 
-  messages.push(newMessage);
-  fs.writeFileSync(messagesPath, JSON.stringify(messages, null, 2));
-
-  res.redirect('/#kontakt');
-});
 
 module.exports = router;

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DanceFlow Wiesbaden</title>
@@ -10,9 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-  
     <link rel="stylesheet" href="/css/style.css">
-  </head>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
 <body>
 
   <%- include('partials/header') %>
@@ -44,28 +45,100 @@
     </section>
   </main>
 
-  <section class="container py-5 my-4 border-top" id="kontakt">
-    <div class="row">
-      
-      <div class="col-md-6 mb-4 mb-md-0">
-        <h3>DanceFlow Wiesbaden</h3>
-        <p>Deine Tanzschule in Wiesbaden – für Anfänger bis Fortgeschrittene.</p>
-        <p style="margin-top: 1rem;"><strong>Adresse:</strong> Musterstraße 12, 65183 Wiesbaden</p>
-        <p><strong>E-Mail:</strong> kontakt@danceflow-wiesbaden.de</p>
+  <section class="contact-section" id="kontakt">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 contact-info">
+          <h3>DanceFlow Wiesbaden</h3>
+          <p>Deine Tanzschule in Wiesbaden – für Anfänger bis Fortgeschrittene.</p>
+          <p><strong>Adresse:</strong> Musterstraße 12, 65183 Wiesbaden</p>
+          <p><strong>E-Mail:</strong> kontakt@danceflow-wiesbaden.de</p>
+        </div>
+  
+        <div class="col-md-6">
+          <h3>Interesse an einer Probestunde? Schreib uns!</h3>
+          <form id="contactForm" action="/api/contact" method="POST">
+            <p class="mt-4" style="font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+              Mit * markierte Felder sind Pflichtfelder
+            </p>
+            <input type="text" name="firstname" placeholder="Dein Vorname *" class="form-control mb-3" required>
+            <input type="text" name="lastname" placeholder="Dein Nachname" class="form-control mb-3" required>
+            
+            <select name="course" class="form-select mb-3" required>
+              <option value="" disabled selected>Wähle einen Kurs aus... *</option>
+              <option value="salsa">Salsa Anfänger</option>
+              <option value="bachata">Bachata für Paare</option>
+              <option value="hiphop">Hip Hop Basics</option>
+              <option value="standard">Standard & Latein</option>
+              <option value="tango">Tango Argentino</option>
+              <option value="disco">Disco Fox</option>
+            </select>
+        
+            <input type="text" name="partner" placeholder="Dein Partnerwunsch (optional)" class="form-control mb-3">
+            <input type="email" name="email" placeholder="Deine E-Mail-Adresse *" class="form-control mb-3" required>
+            <textarea name="message" placeholder="Deine Nachricht (optional)" class="form-control mb-3"></textarea>
+        
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" name="confirm" id="confirmCheck" required>
+              <label class="form-check-label" for="confirmCheck">
+                Ich bestätige meine verbindliche Anmeldung für den Wochentag des Kurses. *
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Nachricht senden</button>
+          </form>
+        
+          <p class="mt-4" style="font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+            <strong>Wichtiger Hinweis:</strong><br>
+            Die Teilnahmegebühr für die Probestunde wird unkompliziert vor Ort bei Kursbeginn bar oder per Karte bezahlt. 
+            Bei Zurücknahme der Buchung kontaktiere bitte unser Team über die E-Mail 
+            <a href="mailto:kontakt@danceflow-wiesbaden.de" style="color: var(--volt-yellow);">kontakt@danceflow-wiesbaden.de</a>. 
+            Kosten fallen nicht an.
+          </p>
+        </div>
       </div>
-
-      <div class="col-md-6">
-        <h3>Schreib uns</h3>
-        <form class="contact-form" action="/api/contact" method="POST">
-          <input type="text" name="name" placeholder="Dein Name" class="form-control mb-3" required>
-          <input type="email" name="email" placeholder="Deine E-Mail-Adresse" class="form-control mb-3" required>
-          <textarea name="message" placeholder="Deine Nachricht" class="form-control mb-3" required></textarea>
-          <button type="submit" class="btn btn-primary">Nachricht senden</button>
-        </form>
-      </div>
-
     </div>
   </section>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: new URLSearchParams(formData)
+        });
+        
+        if (response.ok) {
+          Swal.fire({
+            title: 'Vielen Dank!',
+            text: 'Deine Nachricht wurde erfolgreich abgeschickt.',
+            icon: 'success',
+            html: 'Wir haben deine Anfrage erhalten. ' + 'Schau dir in der Zwischenzeit doch unsere ' + '<a href="/courses">Kursübersicht</a> an!',
+            showCloseButton: true,
+            focusConfirm: false,
+            confirmButtonColor: '#0a1f44',
+            background: '#ffffff',
+            color: '#333333',
+            backdrop: 'rgba(0, 0, 0, 0.4)'
+          });
+          e.target.reset();
+        } else {
+          throw new Error('Senden fehlgeschlagen');
+        }
+      } catch (err) {
+        Swal.fire({
+          title: 'Fehler',
+          text: 'Etwas ist schiefgelaufen. Bitte versuche es später nochmal.',
+          icon: 'error',
+          confirmButtonColor: '#d33'
+        });
+      }
+    });
+  </script>
 
   <%- include('partials/footer') %>
 
