@@ -42,11 +42,32 @@ router.post('/api/contact', (req, res) => {
 
 router.get('/admin', requireAdmin, (req, res) => {
     try {
-      const fileContent = fs.readFileSync(messagesPath, 'utf-8');
-      const messages = JSON.parse(fileContent || '[]');
-      res.render('admin', { messages: messages });
+        const fileContent = fs.readFileSync(messagesPath, 'utf-8');
+        const messages = JSON.parse(fileContent || '[]');
+        
+        const coursesPath = path.join(__dirname, '..', 'data', 'courses.json');
+        const bookingsPath = path.join(__dirname, '..', 'data', 'bookings.json');
+        
+        let courses = [];
+        let bookings = [];
+        
+        if (fs.existsSync(coursesPath)) {
+            const coursesData = fs.readFileSync(coursesPath, 'utf-8');
+            courses = JSON.parse(coursesData || '[]');
+        }
+        
+        if (fs.existsSync(bookingsPath)) {
+            const bookingsData = fs.readFileSync(bookingsPath, 'utf-8');
+            bookings = JSON.parse(bookingsData || '[]');
+        }
+        
+        res.render('admin', { 
+            messages: messages,
+            courses: courses,
+            bookings: bookings
+        });
     } catch (err) {
-      res.status(500).send('Fehler beim Laden der Nachrichten.');
+        res.status(500).send('Fehler beim Laden der Daten.');
     }
 });
 
