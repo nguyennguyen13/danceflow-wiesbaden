@@ -44,7 +44,7 @@
 }
 
 .site-header .nav-link {
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 3px rgb(255, 230, 0);
 }
 
 html {
@@ -71,6 +71,45 @@ img {
   max-width: 100%;
   display: block;
 }
+/* =========================================================
+   Styling für die DanceFlow Menüpunkte (NUR MOBIL)
+   ========================================================= */
+   @media (max-width: 768px) {
+    .site-header .navbar-nav .nav-link {
+      background-color: rgb(25, 25, 112, 0.8); /* Nutzt dein definiertes Dunkelblau */
+      color: white !important; /* Gelbe Schrift */
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      
+      /* Macht aus den Links dicke Buttons fürs Handy */
+      border-radius: 50px; /* Abgerundete Ecken */
+      padding: 0.8rem 1.5rem !important; /* Größere Klickfläche für Finger */
+      margin: 0.1rem auto; 
+      width: 60%;
+      display: block;
+    }
+  
+    /* Hover/Aktiv-Effekt für die mobile Ansicht */
+    .site-header .navbar-nav .nav-link:hover,
+    .site-header .navbar-nav .nav-link:focus {
+      color: var(--nightsky-blue) !important; /* Farben drehen sich beim Tippen um */
+    }
+
+  .site-header .navbar-toggler {
+    top: 45px !important;       /* Fester Abstand von oben, orientiert sich an der Mitte deines Logos */
+    transform: none !important;   /* Deaktiviert die dynamische Zentrierung */
+    border-color: #0a1f44 !important; /* Macht auch den dünnen Rahmen des Buttons blau */
+  }
+
+  .site-header .navbar-nav .nav-item:first-child {
+    margin-top: 30px !important;
+  }
+
+  .site-header .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%230a1f44' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+  }
+  }
 
 /* ===== TYPOGRAFIE ===== */
 h1,
@@ -97,10 +136,9 @@ h3 {
 .site-footer {
   background-color: var(--nightsky-blue);
   color: rgba(245, 245, 245, 0.7);
-  /* Leicht transparentes Weiß */
   padding: 2rem 0;
   padding-top: 100px;
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 /* Globale Basis für alle Buttons */
@@ -118,7 +156,7 @@ h3 {
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
 }
 
 .btn-primary {
@@ -127,14 +165,40 @@ h3 {
   color: var(--nightsky-blue);
   border: 2px solid var(--volt-yellow);
   margin: 0 10px;
+}
 
+.btn-contact {
+  font-size: 1.1rem;
+  background-color: var(--volt-yellow);
+  color: var(--nightsky-blue);
+  border: 2px solid var(--volt-yellow);
+  margin: 0 10px;
+}
+
+.btn-contact:hover {
+  background-color: color-mix(in srgb, var(--volt-yellow), transparent 20%) !important;
+  color: var(--nightsky-blue) !important;
+  border-color: transparent !important;
+  transform: translateY(-5px);
+  outline: none !important;
+  box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
+}
+
+@media (max-width: 768px) {
+  .btn-contact {
+    font-size: 1.3rem;
+    padding: 0.7rem 2rem;
+    margin: 50px auto 0 auto; 
+    display: block; 
+    width: fit-content;
+  }
 }
 
 .btn-primary:hover {
   background-color: color-mix(in srgb, var(--volt-yellow), transparent 20%) !important;
   color: var(--nightsky-blue) !important;
   border-color: transparent !important;
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   outline: none !important;
   box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
 }
@@ -161,7 +225,7 @@ h3 {
   background-color: color-mix(in srgb, var(--volt-yellow), transparent 20%) !important;
   color: var(--nightsky-blue) !important;
   border-color: transparent !important;
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   outline: none !important;
   box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
 }
@@ -187,7 +251,7 @@ h3 {
   background-color: color-mix(in srgb, var(--volt-yellow), transparent 20%) !important;
   color: var(--nightsky-blue) !important;
   border-color: transparent !important;
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   outline: none !important;
   box-shadow: 0 4px 14px rgba(255, 230, 0, 0.45);
 }

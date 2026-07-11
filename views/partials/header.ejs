@@ -1,35 +1,43 @@
-<div class="site-header">
-  <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
+<nav class="navbar navbar-expand-md navbar-dark site-header py-3">
+  <div class="container position-relative justify-content-center justify-content-md-between">
+    
+    <a class="navbar-brand mx-auto mx-md-0 p-0 text-center" href="/">
+      <img src="/images/logo_danceflow_wiesbaden.png" alt="Danceflow Wiesbaden Logo" height="100">
+    </a>
+
+    <button class="navbar-toggler position-absolute end-0 top-50 translate-middle-y me-3" type="button" data-bs-toggle="collapse" data-bs-target="#danceflowNavbar" aria-controls="danceflowNavbar" aria-expanded="false" aria-label="Navigation umschalten">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="danceflowNavbar">
       
-      <div class="col-md-3 mb-2 mb-md-0">
-        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-          <img src="/images/logo_danceflow_wiesbaden.png" alt="Danceflow Wiesbaden Logo" height="100">
-        </a>
-      </div>
-      
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/" class="btn-secondary">Home</a></li>
-        <li><a href="/courses" class="btn-secondary">Kurse</a></li>
-        <li><a href="/#kontakt" class="btn-secondary">Kontakt</a></li>
+      <ul class="navbar-nav mx-auto my-3 my-md-0 gap-3 text-center">
+        <li class="nav-item">
+          <a href="/" class="btn-secondary nav-link d-inline-block px-3">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="/courses" class="btn-secondary nav-link d-inline-block px-3">Kurse</a>
+        </li>
+        <li class="nav-item">
+          <a href="/#kontakt" class="btn-secondary nav-link d-inline-block px-3">Kontakt</a>
+        </li>
       </ul>
       
-      <div class="col-md-3 text-end d-flex justify-content-end align-items-center gap-3">
+      <div class="d-flex justify-content-center justify-content-md-end align-items-center gap-3 mt-2 mt-md-0">
         <% if (user) { %>
           <% if (user.role==='admin' ) { %>
             <a href="/admin" class="btn btn-outline-light">Dashboard</a>
-            <% } %>
-              <a href="#" onclick="logout()" class="btn btn-outline-light">Logout</a>
-              <% } else { %>
-                <a href="/login" class="btn btn-primary">Login</a>
-                <% } %>
+          <% } %>
+          <a href="#" onclick="logout()" class="btn btn-outline-light">Logout</a>
+        <% } else { %>
+          <a href="/login" class="btn btn-primary">Login</a>
+        <% } %>
       </div>
 
-    </header>
-  </div>
-</div>
+    </div>
 
-<!-- JS für Logout -->
+  </div>
+</nav>
 
 <script>
   async function logout() {

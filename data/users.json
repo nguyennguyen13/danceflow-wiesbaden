@@ -14,5 +14,13 @@
     "email": "alice@mail.de",
     "password": "$2a$10$rEO2p7yRP5MRx0ffseAHAe1xJ3X0qq3SAwH9h.q6LRiWoa5qzWVgi",
     "role": "customer"
+  },
+  {
+    "id": "1783692604084",
+    "username": "testuser",
+    "name": "test test",
+    "email": "test@user.de",
+    "password": "$2a$10$OpuDKqbP79zm3jFshDpy4e0MrToVIbN/eSRlMsoChH7xQ/v0J5riy",
+    "role": "customer"
   }
 ]
