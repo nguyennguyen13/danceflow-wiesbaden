@@ -26,7 +26,6 @@
     emptyState.hidden = visibleCount !== 0;
   }
 
-  controls.forEach(control => control.addEventListener('change', applyFilters));
   form.addEventListener('submit', event => {
     event.preventDefault();
     applyFilters();

@@ -37,5 +37,57 @@
     "maxParticipants": 30,
     "bookedParticipants": 0,
     "status": "inactive"
+  },
+  {
+    "id": "hiphop-101",
+    "name": "Hip-Hop Basics",
+    "style": "Hip Hop",
+    "level": "beginner",
+    "ageGroup": "Jugendliche",
+    "weekday": "Montag",
+    "time": "17:30-18:30",
+    "startDate": "2026-07-20",
+    "maxParticipants": 18,
+    "bookedParticipants": 0,
+    "status": "active"
+  },
+  {
+    "id": "bachata-101",
+    "name": "Bachata für Paare",
+    "style": "Bachata",
+    "level": "beginner",
+    "ageGroup": "Erwachsene",
+    "weekday": "Donnerstag",
+    "time": "19:00-20:00",
+    "startDate": "2026-07-23",
+    "maxParticipants": 14,
+    "bookedParticipants": 0,
+    "status": "active"
+  },
+  {
+    "id": "tango-101",
+    "name": "Tango Argentino",
+    "style": "Tango",
+    "level": "intermediate",
+    "ageGroup": "Erwachsene",
+    "weekday": "Freitag",
+    "time": "19:30-21:00",
+    "startDate": "2026-07-24",
+    "maxParticipants": 12,
+    "bookedParticipants": 0,
+    "status": "active"
+  },
+  {
+    "id": "standard-101",
+    "name": "Standard & Latein",
+    "style": "Standard & Latein",
+    "level": "beginner",
+    "ageGroup": "Erwachsene",
+    "weekday": "Samstag",
+    "time": "11:00-12:30",
+    "startDate": "2026-07-25",
+    "maxParticipants": 20,
+    "bookedParticipants": 0,
+    "status": "active"
   }
 ]
