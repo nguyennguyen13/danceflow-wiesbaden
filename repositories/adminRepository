@@ -9,9 +9,6 @@ const bookingsFilePath = path.join(__dirname, '../data/bookings.json');
 let courseArray = [];
 let bookingArray = [];
 
-// =========================================================================
-// INITIALISIERUNG BEIM SERVERSTART
-// =========================================================================
 try {
     if (!fs.existsSync(path.dirname(dataFilePath))) {
         fs.mkdirSync(path.dirname(dataFilePath), { recursive: true });
@@ -21,7 +18,7 @@ try {
         courseArray = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8') || '[]');
     }
 } catch (e) {
-    console.log("⚠️ courses.json fehlt oder ist ungültig: Datei wird neu angelegt");
+    console.log("courses.json fehlt oder ist ungültig: Datei wird neu angelegt");
     fs.writeFileSync(dataFilePath, JSON.stringify(courseArray, null, 4), 'utf-8');
 }
 
@@ -31,13 +28,11 @@ try {
         bookingArray = JSON.parse(fs.readFileSync(bookingsFilePath, 'utf-8') || '[]');
     }
 } catch (e) {
-    console.log("⚠️ bookings.json fehlt oder ist ungültig: Datei wird neu angelegt");
+    console.log("bookings.json fehlt oder ist ungültig: Datei wird neu angelegt");
     fs.writeFileSync(bookingsFilePath, JSON.stringify(bookingArray, null, 4), 'utf-8');
 }
 
-// =========================================================================
-// INTERNE SPEICHER- & AUTOMATISIERUNGS-LOGIK
-// =========================================================================
+
 const saveData = () => {
     // Array nach ID sortieren, damit es bei Updates nicht durcheinander kommt
     courseArray.sort((a, b) => a.id.localeCompare(b.id));
@@ -70,9 +65,6 @@ const runAutoLogic = () => {
     saveData();
 };
 
-// =========================================================================
-// EXPORTIERTE FUNKTIONEN (Exakt angepasst an Ihr Vorbild)
-// =========================================================================
 
 // Liefert alle Kurse basierend auf den gesetzten Filtern
 const getAllCourses = (filters) => {
@@ -101,10 +93,17 @@ const getCourse = (id) => {
 // Erstellt einen neuen Kurs und generiert die ID
 const createCourse = (data) => {
     const styleSlug = data.style ? data.style.trim().toLowerCase().replace(/[^a-z0-9]/g, '') : 'kurs';
-    const newId = `${styleSlug}-${101 + courseArray.length}`;
+    
+    const anzahlGleicherStil = courseArray.filter(c => {
+        const cSlug = c.style ? c.style.trim().toLowerCase().replace(/[^a-z0-9]/g, '') : 'kurs';
+        return cSlug === styleSlug;
+    }).length;
+
+    // Startet sauber bei 101 für den jeweiligen Stil (z.B. salsa-104, weil es schon 3 Salsa-Kurse gibt)
+    const newId = `${styleSlug}-${101 + anzahlGleicherStil}`;
 
     const newCourse = {
-        id: newId,
+        id: newId, // Verwendet die korrekte, stil-spezifische ID
         name: data.name,
         style: data.style,
         level: data.level,
