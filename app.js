@@ -68,8 +68,10 @@ app.use((err, req, res, next) => {
 });
 
 // ===== SERVER START =====
-app.listen(PORT, () => {
-    console.log(`Server läuft auf http://localhost:${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`✅ Server läuft auf http://localhost:${PORT}`);
+    });
+}
 
 module.exports = app;
