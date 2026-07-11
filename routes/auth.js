@@ -76,7 +76,6 @@ function initializeAdmin() {
         role: 'admin'
     });
     saveUsers(users);
-    saveUsers(users);
     console.log('Admin-Benutzer wurde erstellt (admin/admin@danceflow.de und admin123)');
 }
 
@@ -105,7 +104,7 @@ router.get('/login', (req, res) => {
  */
 router.post('/api/auth/login', async (req, res) => {
     const { login, password } = req.body;
-    // Validierung: Beide Felder müssen ausgefüllt sein
+    // Beide Felder müssen ausgefüllt sein
     if (!login || !password) {
         return res.status(400).json({ error: 'Bitte Login (E-Mail oder Username) und Passwort eingeben' });
     }
