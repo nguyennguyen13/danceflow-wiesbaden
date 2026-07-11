@@ -1,0 +1,67 @@
+[
+    {
+        "id": "bachata-104",
+        "name": "Bachata Anfänger",
+        "style": "Bachata",
+        "level": "beginner",
+        "ageGroup": "Erwachsene",
+        "weekday": "Freitag",
+        "time": "18:00-20:00",
+        "startDate": "2026-07-31",
+        "maxParticipants": 24,
+        "bookedParticipants": 0,
+        "status": "active"
+    },
+    {
+        "id": "bachata-105",
+        "name": "Bachata Fortgeschrittene",
+        "style": "Bachata",
+        "level": "intermediate",
+        "ageGroup": "Erwachsene",
+        "weekday": "Donnerstag",
+        "time": "17:00-18:00",
+        "startDate": "2026-07-30",
+        "maxParticipants": 14,
+        "bookedParticipants": 0,
+        "status": "active"
+    },
+    {
+        "id": "salsa-101",
+        "name": "Salsa Anfänger",
+        "style": "Salsa",
+        "level": "beginner",
+        "ageGroup": "Erwachsene",
+        "weekday": "Dienstag",
+        "time": "17:00-18:00",
+        "startDate": "2026-07-21",
+        "maxParticipants": 16,
+        "bookedParticipants": 2,
+        "status": "active"
+    },
+    {
+        "id": "salsa-102",
+        "name": "Salsa Profi",
+        "style": "Salsa",
+        "level": "advanced",
+        "ageGroup": "Erwachsene",
+        "weekday": "Mittwoch",
+        "time": "20:00-22:00",
+        "startDate": "2026-07-22",
+        "maxParticipants": 10,
+        "bookedParticipants": 0,
+        "status": "active"
+    },
+    {
+        "id": "salsa-103",
+        "name": "Salsa Anfänger",
+        "style": "Salsa",
+        "level": "beginner",
+        "ageGroup": "Erwachsene",
+        "weekday": "Donnerstag",
+        "time": "18:00-20:00",
+        "startDate": "2026-07-08",
+        "maxParticipants": 30,
+        "bookedParticipants": 0,
+        "status": "inactive"
+    }
+]
