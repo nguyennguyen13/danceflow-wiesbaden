@@ -1,10 +1,19 @@
 [
-    {
-        "id": "bk-0001",
-        "courseId": "salsa-101",
-        "customerName": "Max Mustermann",
-        "partnerName": "Erika Mustermann",
-        "status": "confirmed",
-        "createdAt": "2026-07-07"
-    }
+  {
+    "id": "bk-0001",
+    "courseId": "salsa-101",
+    "customerName": "Max Mustermann",
+    "partnerName": "Erika Mustermann",
+    "status": "confirmed",
+    "createdAt": "2026-07-07"
+  },
+  {
+    "id": "bk-1783784903515",
+    "courseId": "salsa-102",
+    "customerName": "Richard Hank",
+    "partnerName": "",
+    "email": "richard-hk@web.de",
+    "status": "confirmed",
+    "createdAt": "2026-07-11"
+  }
 ]
