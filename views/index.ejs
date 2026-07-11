@@ -2,7 +2,6 @@
 <html lang="de">
 <head>
     <%- include('partials/head') %>
-    
     <title>DanceFlow Wiesbaden</title>
 </head>
 <body>
@@ -41,7 +40,7 @@
           <h3>DanceFlow Wiesbaden</h3>
           <p>Deine Tanzschule in Wiesbaden – für Anfänger bis Fortgeschrittene.</p>
           <p><strong>Adresse:</strong> Musterstraße 12, 65183 Wiesbaden</p>
-          <p><strong>E-Mail:</strong> kontakt@danceflow-wiesbaden.de</p>
+          <p><strong>E-Mail:</strong> <a href="mailto:kontakt@danceflow-wiesbaden.de" style="color: var(--volt-yellow);">kontakt@danceflow-wiesbaden.de</a></p>
         </div>
   
         <div class="col-md-6">
@@ -89,10 +88,10 @@
     </div>
   </section>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     document.getElementById('contactForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      
       const formData = new FormData(e.target);
       
       try {
@@ -102,6 +101,10 @@
         });
         
         if (response.ok) {
+          e.target.reset();
+
+          document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+
           Swal.fire({
             title: 'Vielen Dank!',
             text: 'Deine Nachricht wurde erfolgreich abgeschickt.',
@@ -112,9 +115,9 @@
             confirmButtonColor: '#0a1f44',
             background: '#ffffff',
             color: '#333333',
-            backdrop: 'rgba(0, 0, 0, 0.4)'
+            backdrop: 'rgba(0, 0, 0, 0.4)',
+            returnFocus: false
           });
-          e.target.reset();
         } else {
           throw new Error('Senden fehlgeschlagen');
         }
@@ -123,7 +126,8 @@
           title: 'Fehler',
           text: 'Etwas ist schiefgelaufen. Bitte versuche es später nochmal.',
           icon: 'error',
-          confirmButtonColor: '#d33'
+          confirmButtonColor: '#d33',
+          returnFocus: false
         });
       }
     });

@@ -284,3 +284,71 @@ h3 {
 .site-header img[alt*="Logo"] {
   filter: drop-shadow(0 0 6px rgba(255, 230, 0, 0.7));
 }
+
+/* Druckversion */
+@media print {
+  nav, footer, .btn, #contactForm {
+    display: none !important;
+  }
+  .hero {
+    margin-top: 100px !important;
+    padding-top: 20px !important;
+  }
+
+  /* 3. ALLES strikt schwarz machen & Web-Effekte killen (Der Holzhammer für den Drucker) */
+  *, *:before, *:after {
+    color: #000 !important;
+    background: transparent !important;
+    text-shadow: none !important;
+    -webkit-text-stroke: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body {
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+  }
+
+  h1 {
+    font-size: 20pt !important;
+    margin-bottom: 15px !important;
+  }
+
+  h3 {
+    font-size: 14pt !important;
+    margin-bottom: 8px !important;
+  }
+
+  p {
+    font-size: 11pt !important;
+    margin-bottom: 12px !important;
+  }
+
+  .features-grid {
+    display: block !important;
+    margin-top: 0px !important;
+  }
+
+  .feature-card {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid #ddd !important;
+    page-break-inside: avoid; /* Verhindert, dass die Karte auf 2 Seiten zerrissen wird */
+  }
+
+  .contact-section {
+    margin-top: 40px !important;
+  }
+
+  .contact-info {
+    padding: 20px !important;
+    page-break-inside: avoid;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: underline !important;
+  }
+}
