@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 // Hinweis: In der Endpunkt-Übersicht (Doku Abschnitt 7) steht dieser Endpunkt
 // eigentlich unter api.js (Person 4). Sprecht euch im Team ab, wo er final
 // landen soll – Logik ist unabhängig vom Dateiort identisch.
-router.post('/api/contact', (req, res) => {
+/* router.post('/api/contact', (req, res) => {
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
@@ -38,5 +38,6 @@ router.post('/api/contact', (req, res) => {
 
   res.redirect('/#kontakt');
 });
+*/
 
 module.exports = router;
