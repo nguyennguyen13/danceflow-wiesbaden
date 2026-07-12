@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { requireAuth } = require('../middlewares/roleMiddleware');
 
-const messagesPath  = path.join(__dirname, '..', 'data', 'messages.json');
+const messagesPath = path.join(__dirname, '..', 'data', 'messages.json');
 const COURSES_FILE = path.join(__dirname, '..', 'data', 'courses.json');
 const BOOKINGS_FILE = path.join(__dirname, '..', 'data', 'bookings.json');
 
@@ -119,7 +119,7 @@ router.post('/bookings', requireAuth, (req, res) => {
 
   // Buchung speichern
   const newBooking = {
-    bookingId: 'bk-' + Date.now(),
+    id: 'bk-' + Date.now(),
     courseId,
     customerName: customerName.trim(),
     email: email.trim(),
@@ -136,16 +136,15 @@ router.post('/bookings', requireAuth, (req, res) => {
   writeJSON(BOOKINGS_FILE, bookings);
 
   // Aktualisiere bookedParticipants
-  const updatedConfirmed = bookings.filter(b =>
-    b.courseId === courseId && b.status === 'Bestätigt'
-  ).length;
+  const updatedConfirmed = bookings
+    .filter(b => b.courseId === courseId && b.status === 'Bestätigt')
+    .reduce((total, b) => total + (b.isPartner ? 2 : 1), 0);
 
   const courseIndex = courses.findIndex(c => c.id === courseId);
   if (courseIndex !== -1) {
     courses[courseIndex].bookedParticipants = updatedConfirmed;
     writeJSON(COURSES_FILE, courses);
   }
-
   res.json({
     success: true,
     booking: newBooking,

@@ -36,26 +36,56 @@
                 </section>
                 <section class="booking-panel">
                     <h2>Jetzt anmelden</h2>
-                    <% if (course.isFull) { %>
-                        <p>Dieser Kurs ist aktuell ausgebucht.</p>
+
+                    <% if (!user) { %>
+                        <!-- Noch nicht eingeloggt -->
+                        <div class="booking-guest-hint">
+                            <p>Sie müssen eingeloggt sein, um diesen Kurs zu buchen.</p>
+                            <a href="/login" class="btn btn-primary">Zum Login</a>
+                        </div>
                         <% } else { %>
-                            <% if (error) { %>
-                                <p class="form-error" role="alert">
-                                    <%= error %>
-                                </p>
-                                <% } %>
-                                    <form action="/courses/<%= course.id %>/book" method="post">
-                                        <label>Dein Name *<input name="customerName" required
-                                                value="<%= form?.customerName || '' %>"></label>
-                                        <label>E-Mail-Adresse *<input type="email" name="email" required
-                                                value="<%= form.email || '' %>"></label>
-                                        <label>Name der Tanzpartnerin / des Tanzpartners <small>(optional)</small><input
-                                                name="partnerName" value="<%= form.partnerName || '' %>"></label>
-                                        <p class="booking-hint">Mit Partner*in werden zwei Plätze reserviert.</p>
-                                        <button class="btn btn-primary" type="submit">Verbindlich buchen</button>
-                                    </form>
-                                    <% } %>
+                            <form id="bookingForm">
+                                <input type="hidden" id="courseId" value="<%= course.id %>">
+                                <input type="hidden" id="customerName" value="<%= user.name %>">
+                                <input type="hidden" id="email" value="<%= user.email %>">
+
+                                <label>
+                                    Dein Name: 
+                                    <input type="text" id="participantName" value="<%= user.name %>" required>
+                                </label>
+
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="isPartner">
+                                    <label for="isPartner">Mit Tanzpartner buchen</label>
+                                    <small>(2 Plätze werden reserviert)</small>
+                                </div>
+
+                                <div id="partnerField" style="display: none;">
+                                    <label>
+                                        Name des Partners:
+                                        <input type="text" id="partnerName">
+                                    </label>
+                                </div>
+
+                                <% if (course.isFull) { %>
+                                    <p class="booking-hint"
+                                        style="background: #fff8e6; padding: 0.8rem; border-radius: 6px;">
+                                        Dieser Kurs ist ausgebucht. Sie können sich auf die
+                                        <strong>Warteliste</strong> setzen.
+                                    </p>
+                                    <button type="submit" class="btn btn-warning">Auf Warteliste setzen</button>
+                                    <% } else { %>
+                                        <p class="booking-hint">
+                                            Bei Überbuchung werden Sie automatisch auf die Warteliste gesetzt.
+                                        </p>
+                                        <button type="submit" class="btn btn-primary">Verbindlich buchen</button>
+                                        <% } %>
+
+                                            <div id="bookingError" class="form-error" style="display: none;"></div>
+                            </form>
+                            <% } %>
                 </section>
+
             </div>
         </main>
         <%- include('partials/footer') %>
@@ -63,6 +93,22 @@
                 const user = <%- user ? JSON.stringify(user) : 'null' %>;
             </script>
             <script src="/js/booking.js"></script>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const isPartnerCheckbox = document.getElementById('isPartner');
+                    const partnerField = document.getElementById('partnerField');
+
+                    if (isPartnerCheckbox) {
+                        isPartnerCheckbox.addEventListener('change', function () {
+                            partnerField.style.display = this.checked ? 'block' : 'none';
+                            if (!this.checked) {
+                                document.getElementById('partnerName').value = '';
+                            }
+                        });
+                    }
+                });
+            </script>
 </body>
 
 </html>

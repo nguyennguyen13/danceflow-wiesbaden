@@ -70,7 +70,12 @@ router.post('/courses/:id/book', (req, res) => {
   if (enrichedCourse.availablePlaces < requestedPlaces) return res.status(409).render('course-detail', { course: enrichedCourse, error: 'Für diese Anmeldung sind nicht genügend freie Plätze verfügbar.', form });
   bookings.push({ id: `bk-${Date.now()}`, courseId: course.id, customerName, partnerName, email, status: 'confirmed', createdAt: new Date().toISOString().slice(0, 10) });
   writeJson(bookingsPath, bookings);
-  course.bookedParticipants = enrichedCourse.bookedParticipants + requestedPlaces;
+  const allBookings = readJson(bookingsPath);
+  const totalParticipants = allBookings
+    .filter(b => b.courseId === course.id && b.status !== 'cancelled')
+    .reduce((total, b) => total + (b.partnerName?.trim() ? 2 : 1), 0);
+
+  course.bookedParticipants = totalParticipants;
   writeJson(coursesPath, courses);
   res.render('booking-success', { course, requestedPlaces });
 });
