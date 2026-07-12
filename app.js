@@ -43,13 +43,13 @@ app.use((req, res, next) => {
 // Routes
 const apiRouter = require('./routes/api');  
 const pagesRouter = require('./routes/pages');
-const coursesRouter = require('./routes/courses');
+//const coursesRouter = require('./routes/courses');
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');     
 
 app.use('/api', apiRouter);
 app.use('/', pagesRouter);
-app.use('/', coursesRouter);
+//app.use('/', coursesRouter);
 app.use('/', authRouter);
 app.use('/admin', adminRouter); // Nur für Administratoren (geschützt)
 
