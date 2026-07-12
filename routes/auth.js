@@ -82,10 +82,7 @@ function initializeAdmin() {
 // Führt die Admin-Initialisierung beim Starten des Skripts aus
 initializeAdmin();
 
-/**
- * Zeigt die Login/Register-Seite an.
- * Falls der Benutzer bereits eingeloggt ist, erfolgt eine Weiterleitung basierend auf seiner Rolle.
- */
+// GET  /login
 router.get('/login', (req, res) => {
     // Prüfen, ob der Benutzer bereits eingeloggt ist
     if (req.session.user) {
@@ -98,10 +95,7 @@ router.get('/login', (req, res) => {
     res.render('login', { title: 'DanceFlow - Anmeldung' });
 });
 
-/**
- * Login mit Email oder Username.
- * Prüft Zugangsdaten und erstellt bei Erfolg eine Session.
- */
+//POST /api/auth/login 
 router.post('/api/auth/login', async (req, res) => {
     const { login, password } = req.body;
     // Beide Felder müssen ausgefüllt sein
@@ -136,11 +130,7 @@ router.post('/api/auth/login', async (req, res) => {
     res.json({ success: true, redirect: redirectUrl });
 });
 
-/**
- * Registriert einen neuen Benutzer mit Username, Name, Email, Passwort.
- * Verschlüsselt das Passwort asynchron und speichert den neuen Benutzer standardmäßig als customer.
- * Validiert alle Felder und erstellt automatisch eine Session.
- */
+// POST /api/auth/register 
 router.post('/api/auth/register', async (req, res) => {
     const { username, name, email, password } = req.body;
     // Alle Felder müssen ausgefüllt sein
@@ -212,10 +202,7 @@ router.post('/api/auth/register', async (req, res) => {
     });
 });
 
-/**
- * API-Endpoint zum Ausloggen des Benutzers.
- * Beendet die aktuelle Session des Benutzers.
- */
+// POST /api/auth/logout 
 router.post('/api/auth/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) {
