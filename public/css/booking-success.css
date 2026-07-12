@@ -1,0 +1,25 @@
+/* Gilt für alle Seiten: Standard-Reset */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* NUR auf der kurzen Bestätigungsseite wird Flexbox aktiv */
+body.success-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Auch das Dehnen des Inhalts gilt nur für die Bestätigung */
+body.success-page main.confirmation.container {
+    flex: 1 0 auto;
+    padding-top: 12rem;
+    padding-bottom: 6rem;
+}
+
+/* Sorgt dafür, dass der Footer auf der Bestätigungsseite unten klebt */
+body.success-page .site-footer {
+    flex-shrink: 0;
+}
