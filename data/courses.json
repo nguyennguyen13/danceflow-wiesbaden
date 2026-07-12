@@ -1,5 +1,31 @@
 [
   {
+    "id": "bachata-101",
+    "name": "Bachata für Paare",
+    "style": "Bachata",
+    "level": "beginner",
+    "ageGroup": "Erwachsene",
+    "weekday": "Donnerstag",
+    "time": "19:00-20:00",
+    "startDate": "2026-07-23",
+    "maxParticipants": 14,
+    "bookedParticipants": 2,
+    "status": "active"
+  },
+  {
+    "id": "hiphop-101",
+    "name": "Hip-Hop Basics",
+    "style": "Hip Hop",
+    "level": "beginner",
+    "ageGroup": "Jugendliche",
+    "weekday": "Montag",
+    "time": "17:30-18:30",
+    "startDate": "2026-07-20",
+    "maxParticipants": 18,
+    "bookedParticipants": 0,
+    "status": "active"
+  },
+  {
     "id": "salsa-101",
     "name": "Salsa Anfänger",
     "style": "Salsa",
@@ -9,7 +35,7 @@
     "time": "17:00-18:00",
     "startDate": "2026-07-21",
     "maxParticipants": 16,
-    "bookedParticipants": 5,
+    "bookedParticipants": 1,
     "status": "active"
   },
   {
@@ -22,7 +48,7 @@
     "time": "20:00-22:00",
     "startDate": "2026-07-22",
     "maxParticipants": 10,
-    "bookedParticipants": 9,
+    "bookedParticipants": 1,
     "status": "active"
   },
   {
@@ -39,29 +65,16 @@
     "status": "inactive"
   },
   {
-    "id": "hiphop-101",
-    "name": "Hip-Hop Basics",
-    "style": "Hip Hop",
-    "level": "beginner",
-    "ageGroup": "Jugendliche",
-    "weekday": "Montag",
-    "time": "17:30-18:30",
-    "startDate": "2026-07-20",
-    "maxParticipants": 18,
-    "bookedParticipants": 2,
-    "status": "active"
-  },
-  {
-    "id": "bachata-101",
-    "name": "Bachata für Paare",
-    "style": "Bachata",
+    "id": "standard-101",
+    "name": "Standard & Latein",
+    "style": "Standard & Latein",
     "level": "beginner",
     "ageGroup": "Erwachsene",
-    "weekday": "Donnerstag",
-    "time": "19:00-20:00",
-    "startDate": "2026-07-23",
-    "maxParticipants": 14,
-    "bookedParticipants": 14,
+    "weekday": "Samstag",
+    "time": "11:00-12:30",
+    "startDate": "2026-07-25",
+    "maxParticipants": 20,
+    "bookedParticipants": 0,
     "status": "active"
   },
   {
@@ -74,20 +87,7 @@
     "time": "19:30-21:00",
     "startDate": "2026-07-24",
     "maxParticipants": 12,
-    "bookedParticipants": 12,
-    "status": "active"
-  },
-  {
-    "id": "standard-101",
-    "name": "Standard & Latein",
-    "style": "Standard & Latein",
-    "level": "beginner",
-    "ageGroup": "Erwachsene",
-    "weekday": "Samstag",
-    "time": "11:00-12:30",
-    "startDate": "2026-07-25",
-    "maxParticipants": 20,
-    "bookedParticipants": 20,
+    "bookedParticipants": 0,
     "status": "active"
   }
 ]
