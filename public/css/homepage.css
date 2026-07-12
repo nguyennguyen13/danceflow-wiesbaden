@@ -1,12 +1,10 @@
-/* =========================================================
-   DanceFlow Wiesbaden – homepage.css
-   ========================================================= */
+/* index.ejs css*/
 
    body {
     font-family: 'Montserrat', sans-serif;
   }
   
-  /* ===== HERO ===== */
+  /* Hero-Sektion */
   .hero {
     background-image: url('/images/hero_section_example.png'); 
     background-size: cover;
@@ -55,7 +53,7 @@
     font-size: 1.2rem;
   }
   
-  /* ===== FEATURES ===== */
+  /* features */
   .features {
     padding: 4rem 1rem;
     background-color: var(--nightsky-blue);
@@ -98,7 +96,7 @@
     font-size: 1.2rem;
   }
   
-  /* ===== CONTACT SECTION ===== */
+  /* Kontaktsektion */
   .contact-section {
     background-color: var(--nightsky-blue);
     color: white; 
@@ -137,30 +135,27 @@
     background-color: rgb(255, 249, 209);
   }
   
-  /* =========================================================
-     RESPONSIVE / MOBILE OPTIMIERUNG (max-width: 768px)
-     ========================================================= */
+  /* Mobile Ansicht */
   @media (max-width: 768px) {
     .hero { 
-      /* Erhöht das Padding oben auf 12rem, damit Platz für das Logo/Menü bleibt */
       padding: 30rem 1rem 4rem 1rem; 
       min-height: auto;
     }
   
     .hero h1 {
-      font-size: 2.8rem; /* Deutlich kleiner, damit es nicht umbricht/überlappt */
+      font-size: 2.8rem; 
       text-shadow: 
       -1px -1px 0 var(--text-dark),  
        1px -1px 0 var(--text-dark),
       -1px  1px 0 var(--text-dark),
-       3px  3px 0 var(--text-dark); /* Schatten leicht verkleinert für kleinere Schrift */
+       3px  3px 0 var(--text-dark); 
     }
   
     .hero p {
       font-size: 1rem;
-      margin-left: 20px;  /* Setzt die 250px Desktop-Marge für Mobilgeräte zurück */
-      margin-right: 20px; /* Setzt die 250px Desktop-Marge für Mobilgeräte zurück */
-      border-radius: 50px; /* Schickere Ecken für kleine Displays */
+      margin-left: 20px;
+      margin-right: 20px;
+      border-radius: 50px; 
       padding: 0.5rem;
     }
   

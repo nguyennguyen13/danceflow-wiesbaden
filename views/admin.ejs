@@ -132,7 +132,7 @@
             
             <% if (typeof bookings !== 'undefined' && bookings.length > 0) { %>
                 <div class="table-responsive bg-white shadow-sm rounded border">
-                    <table class="table table-hover table-striped align-middle mb-0">
+                    <table class="table table-hover table-striped table-sm mb-0">
                         <thead class="table-dark">
                             <tr>
                                 <th>Buchungs-ID</th>
@@ -151,7 +151,7 @@
                                 %>
                                 <tr>
                                     <td><code class="text-secondary"><%= booking.id %></code></td>
-                                    <td><strong><%= booking.customerName %></strong></td>
+                                    <td data-label="Kunde:"><strong><%= booking.customerName %></strong></td>
                                     <td>
                                         <% if (booking.partnerName && booking.partnerName.trim() !== '') { %>
                                             <span class="text-dark"><%= booking.partnerName %></span>

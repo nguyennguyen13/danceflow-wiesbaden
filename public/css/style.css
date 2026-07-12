@@ -1,16 +1,15 @@
-/* =========================================================
-   DanceFlow Wiesbaden – style.css
-   Globale Variablen, Reset, Typografie, Layout-Skelett
-   ========================================================= */
-
-/* ===== IMPORT OTHER FILES CSS =====*/
 @import url('homepage.css');
 @import url('courses.css');
 @import url('auth.css');
 @import url('admin.css');
 
 
-/* ===== CSS-VARIABLEN (Corporate Design) ===== */
+/*
+   DanceFlow Wiesbaden – style.css
+   Globale Variablen, Reset, Typografie, Layout-Skelett */
+
+
+/* CSS-VARIABLEN (Corporate Design) */
 :root {
   /* Basisfarben */
   --nightsky-blue: #191970;
@@ -32,7 +31,7 @@
   --radius-md: 50px;
 }
 
-/* ===== HEADER ===== */
+/* Header */
 .site-header {
   background-color: transparent;
   position: absolute;
@@ -71,35 +70,42 @@ img {
   max-width: 100%;
   display: block;
 }
-/* =========================================================
-   Styling für die DanceFlow Menüpunkte (NUR MOBIL)
-   ========================================================= */
-   @media (max-width: 768px) {
-    .site-header .navbar-nav .nav-link {
-      background-color: rgb(25, 25, 112, 0.8); /* Nutzt dein definiertes Dunkelblau */
-      color: white !important; /* Gelbe Schrift */
-      font-weight: 600;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      
-      /* Macht aus den Links dicke Buttons fürs Handy */
-      border-radius: 50px; /* Abgerundete Ecken */
-      padding: 0.8rem 1.5rem !important; /* Größere Klickfläche für Finger */
-      margin: 0.1rem auto; 
-      width: 60%;
-      display: block;
-    }
-  
-    /* Hover/Aktiv-Effekt für die mobile Ansicht */
-    .site-header .navbar-nav .nav-link:hover,
-    .site-header .navbar-nav .nav-link:focus {
-      color: var(--nightsky-blue) !important; /* Farben drehen sich beim Tippen um */
-    }
+
+/* Burgermenü Header (NUR MOBIL)*/
+@media (max-width: 768px) {
+  .site-header .navbar-nav .nav-link {
+    background-color: rgb(25, 25, 112, 0.8);
+    color: white !important;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    /* Macht aus den Links dicke Buttons fürs Handy */
+    border-radius: 50px;
+    /* Abgerundete Ecken */
+    padding: 0.8rem 1.5rem !important;
+    /* Größere Klickfläche für Finger */
+    margin: 0.1rem auto;
+    width: 60%;
+    display: block;
+  }
+
+  /* Hover/Aktiv-Effekt für die mobile Ansicht */
+  .site-header .navbar-nav .nav-link:hover,
+  .site-header .navbar-nav .nav-link:focus {
+    color: var(--nightsky-blue) !important;
+    /* Farben drehen sich beim Tippen um */
+  }
 
   .site-header .navbar-toggler {
-    top: 45px !important;       /* Fester Abstand von oben, orientiert sich an der Mitte deines Logos */
-    transform: none !important;   /* Deaktiviert die dynamische Zentrierung */
-    border-color: #0a1f44 !important; /* Macht auch den dünnen Rahmen des Buttons blau */
+    top: 45px !important;
+    /* Fester Abstand von oben, orientiert sich an der Mitte deines Logos */
+    transform: none !important;
+    /* Deaktiviert die dynamische Zentrierung */
+    border-color: #0a1f44 !important;
+    /* Macht auch den dünnen Rahmen des Buttons blau */
+    position: relative;
+    z-index: 2010;
   }
 
   .site-header .navbar-nav .nav-item:first-child {
@@ -109,9 +115,13 @@ img {
   .site-header .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%230a1f44' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
   }
-  }
 
-/* ===== TYPOGRAFIE ===== */
+  .site-header .navbar-collapse {
+    z-index: 2010;
+}
+}
+
+/* Typografie */
 h1,
 h2,
 h3 {
@@ -132,7 +142,7 @@ h3 {
   font-size: 1.3rem;
 }
 
-/* ===== FOOTER ===== */
+/* Footer */
 .site-footer {
   background-color: var(--nightsky-blue);
   color: rgba(245, 245, 245, 0.7);
@@ -188,8 +198,8 @@ h3 {
   .btn-contact {
     font-size: 1.3rem;
     padding: 0.7rem 2rem;
-    margin: 50px auto 0 auto; 
-    display: block; 
+    margin: 50px auto 0 auto;
+    display: block;
     width: fit-content;
   }
 }
@@ -257,12 +267,13 @@ h3 {
 }
 
 /* --- Admin-Bereich Styling --- */
-.admin-container {   
+.admin-container {
   max-width: 1000px;
   margin: 3rem auto;
   padding: 2rem;
   background: #ffffff;
-  border-radius: 8px; /* Oder verwende deine Variable var(--radius-md) */
+  border-radius: 8px;
+  /* Oder verwende deine Variable var(--radius-md) */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -272,7 +283,8 @@ h3 {
 }
 
 .admin-table tbody tr:hover {
-  background-color: rgba(255, 230, 0, 0.1); /* Dezentes Volt-Yellow */
+  background-color: rgba(255, 230, 0, 0.1);
+  /* Dezentes Volt-Yellow */
 }
 
 .admin-title {
@@ -284,10 +296,88 @@ h3 {
 .site-header img[alt*="Logo"] {
   filter: drop-shadow(0 0 6px rgba(255, 230, 0, 0.7));
 }
+@media (max-width: 768px) {
+  .bg-light {
+    padding-top: 20rem;
+  }
+
+  /* --- Mobile Tabellen-Optimierung --- */
+  
+  /* Blendet den normalen Tabellenkopf auf Handys aus */
+  .table-responsive table thead {
+    display: none;
+  }
+
+  /* Macht aus jeder Tabellenzeile einen eigenen Block (Karte) */
+  .table-responsive table tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  /* Sorgt dafür, dass die Tabellenzellen untereinander stehen und flach bleiben */
+  .table-responsive table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 8px !important; /* Leicht erhöht für bessere Klickfläche */
+    border: none;
+    border-bottom: 1px dashed #eee;
+    font-size: 0.9rem;
+    height: auto !important; /* Zwingt die Zelle, flach zu bleiben */
+    min-height: 1.5rem;
+    overflow: visible;
+  }
+
+  /* Entfernt die Linie bei der letzten Zelle einer Karte */
+  .table-responsive table td:last-child {
+    border-bottom: none;
+  }
+
+  /* Erzeugt automatische Beschriftungen links für jede Zelle */
+  .table-responsive table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--nightsky-blue);
+    padding-right: 15px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Fix für Formular-Elemente/Buttons in Zellen, die die Zeile hochziehen */
+  .table-responsive table td > *,
+  .table-responsive table td .form-control,
+  .table-responsive table td input,
+  .table-responsive table td select,
+  .table-responsive table td .btn {
+    margin: 0 !important;
+    max-width: 65% !important; /* Lässt links genug Platz für das Label */
+    height: auto !important; /* Hebt Bootstraps starre Höhenvorgaben auf */
+    line-height: inherit !important;
+    font-size: inherit !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px !important; /* Macht auch Buttons mobil kompakter */
+  }
+
+  .table-responsive table td .badge {
+    margin: 0 !important;
+  }
+}
 
 /* Druckversion */
 @media print {
-  nav, footer, .btn, #contactForm {
+
+  nav,
+  footer,
+  .btn,
+  #contactForm {
     display: none !important;
   }
   .hero {
@@ -295,8 +385,9 @@ h3 {
     padding-top: 20px !important;
   }
 
-  /* 3. ALLES strikt schwarz machen & Web-Effekte killen (Der Holzhammer für den Drucker) */
-  *, *:before, *:after {
+  *,
+  *:before,
+  *:after {
     color: #000 !important;
     background: transparent !important;
     text-shadow: none !important;
@@ -335,7 +426,8 @@ h3 {
     margin-bottom: 15px !important;
     padding-bottom: 10px !important;
     border-bottom: 1px solid #ddd !important;
-    page-break-inside: avoid; /* Verhindert, dass die Karte auf 2 Seiten zerrissen wird */
+    page-break-inside: avoid;
+    /* Verhindert, dass die Karte auf 2 Seiten zerrissen wird */
   }
 
   .contact-section {
@@ -347,8 +439,8 @@ h3 {
     page-break-inside: avoid;
   }
 
-  a {
-    color: #000 !important;
-    text-decoration: underline !important;
+    a {
+      color: #000 !important;
+      text-decoration: underline !important;
+    }
   }
-}

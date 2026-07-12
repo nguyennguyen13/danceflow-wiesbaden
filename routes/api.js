@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const messagesPath = path.join(__dirname, '..', 'data', 'messages.json');
 
-// POST /api/contact (Der Pfad in der app.js ist /api, hier reicht also /contact)
 router.post('/contact', (req, res) => {
 
   const { firstname, lastname, course, partner, email, message, confirm } = req.body;
@@ -19,13 +18,12 @@ router.post('/contact', (req, res) => {
     let messages = [];
     if (fs.existsSync(messagesPath)) {
         const fileContent = fs.readFileSync(messagesPath, 'utf-8');
-        // Sicherstellen, dass das JSON gültig ist
         messages = fileContent ? JSON.parse(fileContent) : [];
     }
 
     // 3. Neue Nachricht erstellen
     const newMessage = {
-        id: 'msg-' + Date.now(), // Date.now() ist für IDs sicherer als .length
+        id: 'msg-' + Date.now(), 
         firstname,
         lastname,
         course,
