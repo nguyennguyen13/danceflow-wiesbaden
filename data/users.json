@@ -22,5 +22,13 @@
     "email": "test@user.de",
     "password": "$2a$10$OpuDKqbP79zm3jFshDpy4e0MrToVIbN/eSRlMsoChH7xQ/v0J5riy",
     "role": "customer"
+  },
+  {
+    "id": "1783807682035",
+    "username": "Testuser123",
+    "name": "Test User",
+    "email": "user@test.de",
+    "password": "$2a$10$9y3MT9/.ZBlZm1sjOEGyB.TmyZ48oT4Sxjj5riYb63hBsevPbCEsW",
+    "role": "customer"
   }
 ]
