@@ -77,6 +77,9 @@ const getAllCourses = (filters) => {
     if (filters.level && filters.level !== '') {
         filteredCourses = filteredCourses.filter(c => c.level === filters.level);
     }
+    if (filters.courseId && filters.courseId !== '') {
+        filteredCourses = filteredCourses.filter(c => c.courseId === filters.courseId);
+    }
     return filteredCourses;
 };
 

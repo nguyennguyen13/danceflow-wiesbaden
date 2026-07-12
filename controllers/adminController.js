@@ -4,9 +4,10 @@ const adminRepository = require('../repositories/adminRepository');
 let getDashboard = (req, res) => {
     let style = req.query.style || '';
     let level = req.query.level || '';
+    let courseId = req.query.courseId || '';
 
     // Die gesamte Filterung und Auto-Logik delegieren wir ans Repository
-    let filteredCourses = adminRepository.getAllCourses({ style, level });
+    let filteredCourses = adminRepository.getAllCourses({ style, level, courseId});
     let bookings = adminRepository.getAllBookings();
 
     let allStyles = adminRepository.getUniqueStyles();

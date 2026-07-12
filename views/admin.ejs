@@ -51,6 +51,23 @@
                     </select>
                 </div>
 
+                <div class="col-12"><h5 class="mb-0 text-secondary">Nach Kurs-ID filtern</h5></div>
+        
+        <!-- Kurs-Auswahl-Dropdown -->
+        <div class="col-md-8">
+            <label class="form-label text-muted small mb-1">Kurs auswählen</label>
+            <select name="courseId" class="form-select">
+                <option value="">-- Alle Kurse anzeigen --</option>
+                <% if (typeof allCourses !== 'undefined') { %>
+                    <% allCourses.forEach(c => { %>
+                        <option value="<%= c.id %>" <%= (typeof filters !== 'undefined' && filters.courseId === c.id) ? 'selected' : '' %>>
+                            <%= c.id %> | <%= c.name %> (<%= c.weekday %>)
+                        </option>
+                    <% }); %>
+                <% } %>
+            </select>
+        </div>
+
                 <!-- Filter-Buttons -->
                 <div class="col-md-4 d-flex gap-2">
                     <button type="submit" class="btn btn-secondary w-100">Filtern</button>
