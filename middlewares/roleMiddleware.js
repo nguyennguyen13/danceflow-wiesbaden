@@ -14,7 +14,7 @@ function requireAdmin(req, res, next) {
         <!DOCTYPE html>
         <html>
         <head><title>Zugriff verweigert</title></head>
-        <body style="font-family:Arial; text-align:center; padding:50px; background:#191970; color:white;">
+        <body style="font-family:sans-serif; text-align:center; padding:50px; background:#191970; color:white;">
             <h1 style="color:#ff1e27;">Zugriff verweigert</h1>
             <p>Nur für Administratoren!</p>
             <p><a href="/" style="color:#ffe600;">Zurück zur Startseite</a></p>
