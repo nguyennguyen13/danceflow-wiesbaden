@@ -18,50 +18,7 @@
             </a>
         </div>
 
-        <!-- ========================================== -->
-        <!-- DYNAMISCHE FILTER-LEISTE (NEU HINZUGEFÜGT) -->
-        <!-- ========================================== -->
-        <div class="card p-3 mb-4 bg-white shadow-sm border rounded">
-            <form action="/admin" method="GET" class="row g-3 align-items-end">
-                <div class="col-12"><h5 class="mb-0 text-secondary">Kurse filtern</h5></div>
-                
-                <!-- Dynamischer Stil-Filter -->
-                <div class="col-md-4">
-                    <label class="form-label text-muted small mb-1">Tanzstil</label>
-                    <select name="style" class="form-select">
-                        <option value="">-- Alle Stile --</option>
-                        <% if (typeof allStyles !== 'undefined') { %>
-                            <% allStyles.forEach(st => { %>
-                                <option value="<%= st %>" <%= currentFilters.style === st ? 'selected' : '' %>><%= st %></option>
-                            <% }); %>
-                        <% } %>
-                    </select>
-                </div>
-
-                <!-- Dynamischer Level-Filter -->
-                <div class="col-md-4">
-                    <label class="form-label text-muted small mb-1">Kurs-Level</label>
-                    <select name="level" class="form-select text-capitalize">
-                        <option value="">-- Alle Levels --</option>
-                        <% if (typeof allLevels !== 'undefined') { %>
-                            <% allLevels.forEach(lvl => { %>
-                                <option value="<%= lvl %>" <%= currentFilters.level === lvl ? 'selected' : '' %>><%= lvl %></option>
-                            <% }); %>
-                        <% } %>
-                    </select>
-                </div>
-
-                <!-- Filter-Buttons -->
-                <div class="col-md-4 d-flex gap-2">
-                    <button type="submit" class="btn btn-secondary w-100">Filtern</button>
-                    <a href="/admin" class="btn btn-outline-secondary w-100">Zurücksetzen</a>
-                </div>
-            </form>
-        </div>
-
-        <!-- ========================================== -->
-        <!-- TABELLE DER KURSE                          -->
-        <!-- ========================================== -->
+        <!--Tabelle mit Kursen-->
         <% if (courses && courses.length > 0) { %>
             <div class="table-responsive bg-white shadow-sm rounded border">
                 <table class="table table-hover table-striped align-middle mb-0">
@@ -124,9 +81,7 @@
             </div>
         <% } %>
 
-        <!-- ========================================== -->
-        <!-- TABELLE DER EINGEGANGENEN KUNDENBUCHUNGEN  -->
-        <!-- ========================================== -->
+        <!--Tabelle mit Buchungen-->
         <div class="mt-5 mb-5">
             <h2 class="mb-4">Eingegangene Kurs-Buchungen</h2>
             

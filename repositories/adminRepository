@@ -5,7 +5,7 @@ const path = require('path');
 const dataFilePath = path.join(__dirname, '../data/courses.json');
 const bookingsFilePath = path.join(__dirname, '../data/bookings.json');
 
-// In-Memory-Arrays als zentrale Datenquellen zur Laufzeit
+// Arrays als zentrale Datenquellen zur Laufzeit
 let courseArray = [];
 let bookingArray = [];
 
@@ -43,7 +43,7 @@ const runAutoLogic = () => {
     const today = new Date().toISOString().split('T')[0];
 
     courseArray = courseArray.map(course => {
-        // A) Live-Teilnehmerzähler (Partner = +2, Einzel = +1)
+        // (Partner = +2, Einzel = +1)
         const kursBuchungen = bookingArray.filter(b => b.courseId === course.id);
         let echteTeilnehmerAnzahl = 0;
         kursBuchungen.forEach(b => {
@@ -55,7 +55,7 @@ const runAutoLogic = () => {
         });
         course.bookedParticipants = echteTeilnehmerAnzahl;
 
-        // B) Automatischer Ablauf (Datum abgelaufen -> inaktiv)
+        // (Datum abgelaufen -> inaktiv)
         if (course.startDate < today && course.status === 'active') {
             course.status = 'inactive';
         }
@@ -63,21 +63,6 @@ const runAutoLogic = () => {
         return course;
     });
     saveData();
-};
-
-
-// Liefert alle Kurse basierend auf den gesetzten Filtern
-const getAllCourses = (filters) => {
-    runAutoLogic(); // Führt die Berechnungen live im RAM aus
-
-    let filteredCourses = courseArray;
-    if (filters.style && filters.style !== '') {
-        filteredCourses = filteredCourses.filter(c => c.style === filters.style);
-    }
-    if (filters.level && filters.level !== '') {
-        filteredCourses = filteredCourses.filter(c => c.level === filters.level);
-    }
-    return filteredCourses;
 };
 
 // Liefert alle Buchungen für die untere Tabelle
@@ -148,16 +133,10 @@ const updateCourse = (id, data) => {
     }
 };
 
-// Hilfsfunktionen für die Dropdown-Listen im EJS
-const getUniqueStyles = () => [...new Set(courseArray.map(c => c.style))].filter(Boolean);
-const getUniqueLevels = () => [...new Set(courseArray.map(c => c.level))].filter(Boolean);
 
 module.exports = {
-    getAllCourses,
     getAllBookings,
     getCourse,
     createCourse,
-    updateCourse,
-    getUniqueStyles,
-    getUniqueLevels
+    updateCourse
 };
