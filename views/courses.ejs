@@ -1,17 +1,97 @@
 <!DOCTYPE html>
 <html lang="de">
-<head><%- include('partials/head') %><title>Kurse | DanceFlow Wiesbaden</title></head>
+
+<head><%- include('partials/head') %>
+    <title>Kurse | DanceFlow Wiesbaden</title>
+</head>
+
 <body class="courses-page">
   <%- include('partials/header') %>
-  <main class="courses-main container">
-    <header class="courses-intro"><p class="eyebrow">DanceFlow Wiesbaden</p><h1>Finde deinen Tanzkurs</h1><p>Wähle den Stil und das Level, das zu dir passt. Du kannst allein oder mit Tanzpartner*in buchen.</p></header>
-    <form class="course-filters" method="get" action="/courses" data-course-filter-form>
-      <label>Stil<select name="style" data-course-filter="style"><option value="">Alle Stile</option><% styles.forEach(item => { %><option value="<%= item %>" <%= filters.style === item ? 'selected' : '' %>><%= item %></option><% }) %></select></label>
-      <label>Level<select name="level" data-course-filter="level"><option value="">Alle Level</option><% levels.forEach(item => { %><option value="<%= item %>" <%= filters.level === item ? 'selected' : '' %>><%= item %></option><% }) %></select></label>
-      <label>Tag<select name="weekday" data-course-filter="weekday"><option value="">Alle Tage</option><% weekdays.forEach(item => { %><option value="<%= item %>" <%= filters.weekday === item ? 'selected' : '' %>><%= item %></option><% }) %></select></label>
-      <label>Altersgruppe<select name="ageGroup"><option value="">Alle Altersgruppen</option><% ageGroups.forEach(item => { %><option value="<%= item %>" <%= filters.ageGroup === item ? 'selected' : '' %>><%= item %></option><% }) %></select></label>
-      <button class="btn btn-primary" type="submit">Filtern</button><a class="filter-reset" href="/courses">Zurücksetzen</a>
-    </form>
-    <% if (courses.length) { %><section class="course-grid" aria-label="Verfügbare Kurse" data-course-grid><% courses.forEach(course => { %><article class="course-card" data-style="<%= course.style %>" data-level="<%= course.level %>" data-weekday="<%= course.weekday %>"><div class="course-card__top"><span><%= course.style %></span><span class="level"><%= course.level %></span></div><h2><%= course.name %></h2><dl><div><dt>Wann</dt><dd><%= course.weekday %>, <%= course.time %></dd></div><div><dt>Start</dt><dd><%= new Date(course.startDate + 'T00:00:00').toLocaleDateString('de-DE') %></dd></div><div><dt>Für</dt><dd><%= course.ageGroup %></dd></div></dl><p class="availability <%= course.isFull ? 'availability--full' : '' %>"><%= course.isFull ? 'Ausgebucht' : `${course.availablePlaces} Plätze frei` %></p><a class="btn btn-primary" href="/courses/<%= course.id %>"><%= course.isFull ? 'Details ansehen' : 'Kurs buchen' %></a></article><% }) %></section><p class="empty-state" data-filter-empty hidden>Für diese Auswahl gibt es derzeit keine aktiven Kurse. Passe die Filter an.</p><% } else { %><p class="empty-state">Für diese Auswahl gibt es derzeit keine aktiven Kurse. Passe die Filter an.</p><% } %>
-  </main><script src="/js/filter.js" defer></script><%- include('partials/footer') %>
-</body></html>
+    <main class="courses-main container">
+      <header class="courses-intro">
+        <p class="eyebrow">DanceFlow Wiesbaden</p>
+        <h1>Finde deinen Tanzkurs</h1>
+        <p>Wähle den Stil und das Level, das zu dir passt. Du kannst allein oder mit Tanzpartner*in buchen.</p>
+      </header>
+      <form class="course-filters" method="get" action="/courses" data-course-filter-form>
+        <label>Stil<select name="style" data-course-filter="style">
+            <option value="">Alle Stile</option>
+            <% styles.forEach(item=> { %><option value="<%= item %>" <%=filters.style===item ? 'selected' : '' %>><%=
+                  item %>
+              </option>
+              <% }) %>
+          </select></label>
+        <label>Level<select name="level" data-course-filter="level">
+            <option value="">Alle Level</option>
+            <% levels.forEach(item=> { %><option value="<%= item %>" <%=filters.level===item ? 'selected' : '' %>><%=
+                  item %>
+              </option>
+              <% }) %>
+          </select></label>
+        <label>Tag<select name="weekday" data-course-filter="weekday">
+            <option value="">Alle Tage</option>
+            <% weekdays.forEach(item=> { %><option value="<%= item %>" <%=filters.weekday===item ? 'selected' : '' %>>
+                <%= item %>
+              </option>
+              <% }) %>
+          </select></label>
+        <label>Altersgruppe<select name="ageGroup">
+            <option value="">Alle Altersgruppen</option>
+            <% ageGroups.forEach(item=> { %><option value="<%= item %>" <%=filters.ageGroup===item ? 'selected' : '' %>>
+                <%= item %>
+              </option>
+              <% }) %>
+          </select></label>
+        <button class="btn btn-primary" type="submit">Filtern</button><a class="filter-reset"
+          href="/courses">Zurücksetzen</a>
+      </form>
+      <% if (courses.length) { %>
+        <section class="course-grid" aria-label="Verfügbare Kurse" data-course-grid>
+          <% courses.forEach(course=> { %><article class="course-card" data-style="<%= course.style %>"
+              data-level="<%= course.level %>" data-weekday="<%= course.weekday %>">
+              <div class="course-card__top"><span>
+                  <%= course.style %>
+                </span><span class="level">
+                  <%= course.level %>
+                </span></div>
+              <h2>
+                <%= course.name %>
+              </h2>
+              <dl>
+                <div>
+                  <dt>Wann</dt>
+                  <dd>
+                    <%= course.weekday %>, <%= course.time %>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Start</dt>
+                  <dd>
+                    <%= new Date(course.startDate + 'T00:00:00' ).toLocaleDateString('de-DE') %>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Für</dt>
+                  <dd>
+                    <%= course.ageGroup %>
+                  </dd>
+                </div>
+              </dl>
+              <p class="availability <%= course.isFull ? 'availability--full' : '' %>">
+                <%= course.isFull ? 'Ausgebucht' : `${course.availablePlaces} Plätze frei` %>
+              </p><a class="btn btn-primary" href="/courses/<%= course.id %>">
+                <%= course.isFull ? 'Details ansehen' : 'Kurs buchen' %>
+              </a>
+            </article>
+            <% }) %>
+        </section>
+        <p class="empty-state" data-filter-empty hidden>Für diese Auswahl gibt es derzeit keine aktiven Kurse. Passe die
+          Filter an.</p>
+        <% } else { %>
+          <p class="empty-state">Für diese Auswahl gibt es derzeit keine aktiven Kurse. Passe die Filter an.</p>
+          <% } %>
+    </main>
+    <script src="/js/filter.js" defer></script><%- include('partials/footer') %>
+</body>
+
+</html>

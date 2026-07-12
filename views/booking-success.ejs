@@ -1,2 +1,25 @@
 <!DOCTYPE html>
-<html lang="de"><head><%- include('partials/head') %><title>Buchung bestätigt | DanceFlow Wiesbaden</title></head><body class="courses-page"><%- include('partials/header') %><main class="confirmation container"><p class="eyebrow">Buchung bestätigt</p><h1>Wir freuen uns auf dich!</h1><p>Deine Anmeldung für <strong><%= course.name %></strong> wurde gespeichert. <%= requestedPlaces === 2 ? 'Zwei Plätze sind für euch reserviert.' : 'Ein Platz ist für dich reserviert.' %></p><a class="btn btn-primary" href="/courses">Weitere Kurse entdecken</a></main><%- include('partials/footer') %></body></html>
+<html lang="de">
+
+<head>
+    <%- include('partials/head') %>
+    <title>Buchung bestätigt | DanceFlow Wiesbaden</title>
+</head>
+
+<body class="courses-page success-page">
+    <%- include('partials/header') %>
+
+    <main class="confirmation container">
+        <p class="eyebrow">Buchung bestätigt</p>
+        <h1>Wir freuen uns auf dich!</h1>
+        <p>
+            Deine Anmeldung für <strong><%= course.name %></strong> wurde gespeichert. 
+            <%= requestedPlaces === 2 ? 'Zwei Plätze sind für euch reserviert.' : 'Ein Platz ist für dich reserviert.' %>
+        </p>
+        <a class="btn btn-primary" href="/courses">Weitere Kurse entdecken</a>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+
+</html>
