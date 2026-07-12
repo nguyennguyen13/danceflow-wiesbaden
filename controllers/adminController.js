@@ -2,34 +2,18 @@
 const adminRepository = require('../repositories/adminRepository');
 
 let getDashboard = (req, res) => {
-    let style = req.query.style || '';
-    let level = req.query.level || '';
-    let courseId = req.query.courseId || '';
-
-    // Die gesamte Filterung und Auto-Logik delegieren wir ans Repository
-    let filteredCourses = adminRepository.getAllCourses({ style, level, courseId});
-    let bookings = adminRepository.getAllBookings();
-
-    let allStyles = adminRepository.getUniqueStyles();
-    let allLevels = adminRepository.getUniqueLevels();
+    let allCourses = adminRepository.getAllCourses({});
+    let allBookings = adminRepository.getAllBookings({});
 
     res.status(200).render('admin', {
-        courses: filteredCourses,
-        allStyles: allStyles,
-        allLevels: allLevels,
-        currentFilters: { style, level },
-        bookings: bookings
+        courses: allCourses,
+        bookings: allBookings
     });
 };
 
 let getNewCourseForm = (req, res) => {
-    let allStyles = adminRepository.getUniqueStyles();
-    let allLevels = adminRepository.getUniqueLevels();
-
     res.status(200).render('admin-form', {
         course: null,
-        allStyles,
-        allLevels
     });
 };
 
@@ -44,9 +28,7 @@ let getEditCourseForm = (req, res) => {
     let courseToEdit = adminRepository.getCourse(id);
 
     if (courseToEdit) {
-        let allStyles = adminRepository.getUniqueStyles();
-        let allLevels = adminRepository.getUniqueLevels();
-        res.status(200).render('admin-form', { course: courseToEdit, allStyles, allLevels });
+        res.status(200).render('admin-form', { course: courseToEdit});
     } else {
         res.status(404).redirect('/admin');
     }

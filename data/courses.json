@@ -13,6 +13,19 @@
         "status": "active"
     },
     {
+        "id": "bachata-102",
+        "name": "Bachata für Paare",
+        "style": "Bachata",
+        "level": "beginner",
+        "ageGroup": "Erwachsene",
+        "weekday": "Dienstag",
+        "time": "17:00-18:00",
+        "startDate": "2026-08-04",
+        "maxParticipants": 20,
+        "bookedParticipants": 0,
+        "status": "active"
+    },
+    {
         "id": "hiphop-101",
         "name": "Hip-Hop Basics",
         "style": "Hip Hop",
@@ -20,10 +33,10 @@
         "ageGroup": "Jugendliche",
         "weekday": "Montag",
         "time": "17:30-18:30",
-        "startDate": "2026-07-20",
+        "startDate": "2026-06-29",
         "maxParticipants": 18,
         "bookedParticipants": 0,
-        "status": "active"
+        "status": "inactive"
     },
     {
         "id": "salsa-101",
@@ -34,7 +47,7 @@
         "weekday": "Dienstag",
         "time": "17:00-18:00",
         "startDate": "2026-07-21",
-        "maxParticipants": 16,
+        "maxParticipants": 4,
         "bookedParticipants": 4,
         "status": "active"
     },
