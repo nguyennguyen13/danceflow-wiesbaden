@@ -45,7 +45,15 @@
                 <div class="row">
                     <div class="col mb-3">
                         <label class="form-label">Wochentag</label>
-                        <input type="text" name="weekday" class="form-control" value="<%= course ? course.weekday : '' %>" placeholder="z.B. Montag" required>
+                            <select name="Wochentag" class="form-select">
+                                <option value="Montag" <%= course && course.weekday === 'Montag' ? 'selected' : '' %>>Montag</option>
+                                <option value="Dienstag" <%= course && course.weekday === 'Dienstag' ? 'selected' : '' %>>Dienstag</option>
+                                <option value="advanced" <%= course && course.weekday === 'Mittwoch' ? 'selected' : '' %>>Mittwoch</option>
+                                <option value="advanced" <%= course && course.weekday === 'Donnerstag' ? 'selected' : '' %>>Donnerstag</option>
+                                <option value="advanced" <%= course && course.weekday === 'Freitag' ? 'selected' : '' %>>Freitag</option>
+                                <option value="advanced" <%= course && course.weekday === 'Samstag' ? 'selected' : '' %>>Samstag</option>
+                                <option value="advanced" <%= course && course.weekday === 'Sonntag' ? 'selected' : '' %>>Sonntag</option>
+                            </select>
                     </div>
                     <div class="col mb-3">
                         <label class="form-label">Uhrzeit</label>

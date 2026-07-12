@@ -75,7 +75,7 @@ const getCourse = (id) => {
     return courseArray.find(c => c.id === id);
 };
 
-// Erstellt einen neuen Kurs und generiert die ID
+// Erstellt einen neuen Kurs und generiert die ID  
 const createCourse = (data) => {
     const styleSlug = data.style ? data.style.trim().toLowerCase().replace(/[^a-z0-9]/g, '') : 'kurs';
     
