@@ -172,3 +172,14 @@
   font-size: 12px;
   margin-top: 4px;
 }
+
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 1rem;
+    padding-bottom: 10rem;
+  }
+
+  .auth-box {
+    margin-top: 25rem !important;
+  }
+}
